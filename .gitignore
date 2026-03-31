@@ -1,0 +1,25 @@
+# Original source repos (not needed in unified repo)
+antigravity/
+openspec/
+gasd/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Node
+node_modules/
+package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Misc
+*.log
+.env
+.env.local

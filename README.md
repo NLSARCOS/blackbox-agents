@@ -1,0 +1,167 @@
+# 🚀 Antigravity Unified — AI Agent Toolkit
+
+> **20 Agents + 49 Skills + 15 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
+
+A unified AI development environment that combines three powerful systems into a single, portable toolkit:
+
+| System | What it provides |
+|--------|-----------------|
+| **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** | 20 specialist agents, 37 domain skills, validation scripts |
+| **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** | Spec-driven formal planning (proposal → design → specs → tasks) |
+| **[GSAP Skills](https://github.com/greensock/gsap-skills)** | 8 animation domain skills for production-grade motion design |
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# Clone this repo
+git clone https://github.com/nelsonperformanze/antigravity-unified.git
+
+# Copy .agent/ to any project
+cp -r antigravity-unified/.agent/ /your/project/
+```
+
+**That's it.** No `npm install`, no CLI tools, no dependencies. Everything is Markdown that your AI reads.
+
+---
+
+## 🧠 How It Works
+
+The **Super Orchestrator** automatically analyzes every request and routes it to the right specialist:
+
+```
+YOUR REQUEST
+    │
+    ├─ Simple fix?        → Direct agent (frontend, backend, etc.)
+    ├─ Animation?         → GSAP skills auto-loaded
+    ├─ New feature?       → OpenSpec planning → then agents execute
+    └─ Complex task?      → Multi-agent orchestration
+```
+
+### Example Flow
+
+```
+You: "Add scroll animations to the hero section"
+
+AI: 🤖 Applying knowledge of @frontend-specialist...
+    Loading skills: gsap-core, gsap-scrolltrigger
+    [implements with production-grade GSAP patterns]
+```
+
+```
+You: "Build a checkout system with payments"
+
+AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
+    → Creates proposal.md, design.md, specs/, tasks.md
+    → Then routes each task to the right specialist agent
+```
+
+---
+
+## 📦 What's Inside
+
+### Agents (20 specialists)
+
+| Agent | Domain |
+|-------|--------|
+| `orchestrator` | 🧠 Central intelligence & routing |
+| `frontend-specialist` | Web UI/UX, React, CSS |
+| `backend-specialist` | API, Node.js, Express |
+| `mobile-developer` | React Native, Flutter |
+| `database-architect` | Schema, SQL, Prisma |
+| `security-auditor` | OWASP, vulnerabilities |
+| `test-engineer` | Jest, Playwright, TDD |
+| `debugger` | Root cause analysis |
+| `devops-engineer` | CI/CD, Docker, deploy |
+| `performance-optimizer` | Web Vitals, speed |
+| `project-planner` | Planning & roadmap |
+| `game-developer` | Unity, Godot, Phaser |
+| ...and 8 more | Full coverage |
+
+### Skills (49 knowledge modules)
+
+- **37 Kit Skills**: clean-code, api-patterns, frontend-design, database-design, vulnerability-scanner, testing-patterns, and more
+- **4 OpenSpec Skills**: propose, apply, explore, archive — spec-driven planning without CLI
+- **8 GSAP Skills**: core, scrolltrigger, timeline, react, frameworks, plugins, performance, utils
+
+### Workflows (15 slash commands)
+
+| Command | What it does |
+|---------|-------------|
+| `/plan` | 4-phase project planning |
+| `/create` | Build new app from scratch |
+| `/debug` | Systematic debugging |
+| `/test` | Generate and run tests |
+| `/deploy` | Pre-flight checks + deploy |
+| `/orchestrate` | Multi-agent coordination |
+| `/opsx-propose` | Create formal change proposal |
+| `/opsx-apply` | Implement from proposal |
+| `/opsx-explore` | Think/explore before building |
+| `/opsx-archive` | Archive completed change |
+| `/ui-ux-pro-max` | Premium UI design |
+| ...and 4 more | |
+
+---
+
+## 🏗️ Directory Structure
+
+```
+.agent/
+├── ARCHITECTURE.md          # System map
+├── agents/                  # 20 specialist agents
+│   └── orchestrator.md      # 🧠 Super Orchestrator
+├── skills/                  # 49 skills
+│   ├── openspec-*/          # 4 planning skills
+│   ├── gsap-*/              # 8 animation skills
+│   └── .../                 # 37 kit skills
+├── workflows/               # 15 slash commands
+├── rules/
+│   └── GEMINI.md            # Master config (routing rules)
+├── scripts/                 # Validation scripts
+└── .shared/                 # Shared resources
+```
+
+---
+
+## 🔧 Validation Scripts
+
+Built-in Python scripts for project auditing (no external deps):
+
+```bash
+# Quick validation during development
+python .agent/scripts/checklist.py .
+
+# Full verification before deployment
+python .agent/scripts/verify_all.py . --url http://localhost:3000
+```
+
+Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
+
+---
+
+## 📋 Compatibility
+
+| AI Tool | Compatible |
+|---------|-----------|
+| Cursor | ✅ |
+| Windsurf | ✅ |
+| Claude Code | ✅ |
+| Cline/Continue | ✅ |
+| Any AI that reads `.agent/` | ✅ |
+
+---
+
+## 🙏 Credits
+
+This toolkit unifies work from three open-source projects:
+
+- **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** by @vudovn — The agent/skill/workflow foundation
+- **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** by @Fission-AI — Spec-driven planning framework
+- **[GSAP Skills](https://github.com/greensock/gsap-skills)** by @greensock — Animation domain expertise
+
+---
+
+## 📄 License
+
+MIT — Use freely in any project.
