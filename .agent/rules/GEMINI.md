@@ -163,7 +163,7 @@ When user's prompt is NOT in English:
 
 ### 🗺️ System Map Read
 
-> 🔴 **MANDATORY:** Read `ARCHITECTURE.md` at session start to understand Agents, Skills, Scripts, and the unified ecosystem.
+> 🔴 **MANDATORY:** Read `ARCHITECTURE.md` + `MEMORY.md` at session start.
 
 **Path Awareness:**
 
@@ -171,6 +171,7 @@ When user's prompt is NOT in English:
 - Skills: `.agent/skills/` (49 skills — Kit + OpenSpec + GSAP)
 - Workflows: `.agent/workflows/` (15 workflows — Kit + OpenSpec)
 - Scripts: `.agent/scripts/` (validation & audit)
+- Memory: `.agent/MEMORY.md` (project decisions & context)
 - OpenSpec data: `openspec/` (change artifacts)
 
 ### 🧠 Read → Understand → Apply
@@ -179,6 +180,40 @@ When user's prompt is NOT in English:
 ❌ WRONG: Read agent file → Start coding
 ✅ CORRECT: Read → Understand WHY → Apply PRINCIPLES → Code
 ```
+
+### 💾 Project Memory System
+
+> **File:** `.agent/MEMORY.md` — Self-managing project memory.
+
+**WHEN TO READ (automatic):**
+- ✅ At every session start (alongside ARCHITECTURE.md)
+- ✅ Before making architectural decisions (check if already decided)
+- ✅ When encountering an error (check Known Issues)
+
+**WHEN TO WRITE (automatic — no user action needed):**
+
+| Trigger | What to Save | Section |
+|---------|-------------|--------|
+| User chooses a tech stack | Framework, DB, auth method | Tech Stack |
+| Architecture decision made | Decision + 1-line reasoning | Architecture Decisions |
+| Bug discovered with workaround | Bug + fix | Known Issues & Gotchas |
+| Code pattern established | Pattern name + convention | Established Patterns |
+| UI/design choice confirmed | Colors, fonts, layout style | Design Decisions |
+| Environment/config discussed | Env var names + purpose | Key Configs |
+| User expresses a preference | Preference | User Preferences |
+| End of significant session | 1-line summary of what was done | Session Notes |
+
+**HOW TO WRITE:**
+- Append 1-line entries — never verbose paragraphs
+- Date-stamp entries: `YYYY-MM-DD | description`
+- Max 200 lines total — prune old Session Notes if approaching limit
+- Never store secrets, tokens, API keys, or passwords
+- Merge duplicates if same decision appears twice
+
+**RULES:**
+- 🔴 **Silent updates**: Update MEMORY.md without announcing it to the user
+- 🔴 **No confirmation needed**: Just write when triggers match
+- 🔴 **Keep it lean**: If >200 lines, remove oldest Session Notes first
 
 ---
 
