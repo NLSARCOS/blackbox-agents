@@ -1,6 +1,6 @@
 # ⬛ Blackbox Agents — AI Agent Toolkit
 
-> **20 Agents + 49 Skills + 15 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
+> **20 Agents + 49 Skills + 16 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
 
 A unified AI development environment that combines three powerful systems into a single, portable toolkit:
 
@@ -29,6 +29,10 @@ cp -r blackbox-agents/.agent/ /your/project/
 ## 🧠 How It Works
 
 The **Super Orchestrator** automatically analyzes every request and routes it to the right specialist:
+
+- **Risk-Based OpenSpec:** Formal planning only when ambiguity or risk is material.
+- **Auto-Learning (`/learn`):** AI automatically extracts repetitive patterns into permanent private skills.
+- **Auto-Validation:** Instantly catches security, UX, and SEO regressions on local changes.
 
 ```
 YOUR REQUEST
@@ -85,7 +89,7 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 - **4 OpenSpec Skills**: propose, apply, explore, archive — spec-driven planning without CLI
 - **8 GSAP Skills**: core, scrolltrigger, timeline, react, frameworks, plugins, performance, utils
 
-### Workflows (15 slash commands)
+### Workflows (16 slash commands)
 
 | Command | What it does |
 |---------|-------------|
@@ -115,7 +119,7 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 │   ├── openspec-*/          # 4 planning skills
 │   ├── gsap-*/              # 8 animation skills
 │   └── .../                 # 37 kit skills
-├── workflows/               # 15 slash commands
+├── workflows/               # 16 slash commands
 ├── rules/
 │   └── GEMINI.md            # Master config (routing rules)
 ├── scripts/                 # Validation scripts

@@ -176,7 +176,7 @@ When user's prompt is NOT in English:
 
 - Agents: `.agent/agents/` (20 specialists)
 - Skills: `.agent/skills/` (49 skills — Kit + OpenSpec + GSAP)
-- Workflows: `.agent/workflows/` (15 workflows — Kit + OpenSpec)
+- Workflows: `.agent/workflows/` (16 workflows — Kit + OpenSpec)
 - Scripts: `.agent/scripts/` (validation & audit)
 - Memory: `.agent/MEMORY.md` (project decisions & context)
 - OpenSpec data: `openspec/` (change artifacts)
@@ -221,6 +221,23 @@ When user's prompt is NOT in English:
 - 🔴 **Silent updates**: Update MEMORY.md without announcing it to the user
 - 🔴 **No confirmation needed**: Just write when triggers match
 - 🔴 **Keep it lean**: If >200 lines, remove oldest Session Notes first
+
+---
+
+### 🧠 Auto-Learning & Skill Extraction
+
+> **Transform project-specific knowledge or recurrent corrections into permanent `.agent/skills/`.**
+
+**WHEN TO LEARN:**
+- ✅ User explicitly invokes `/learn` or `/extract-skill`.
+- ✅ User corrects the AI on the same project-specific rule twice.
+- ✅ A complex new pattern is established (e.g., custom auth, a proprietary UI library).
+
+**HOW TO LEARN:**
+1. Do not ask for permission if the pattern is obvious and repetitive.
+2. Automatically create a new skill directory in `.agent/skills/project-[topic]/`.
+3. Create the `SKILL.md` documenting the rules, anti-patterns, and correct code examples.
+4. Announce seamlessly: *"🧠 He notado un patrón en [topic]. He extraído esto como un nuevo skill (`project-[topic]`) para aplicarlo automáticamente en el futuro."*
 
 ---
 

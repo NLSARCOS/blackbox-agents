@@ -14,7 +14,7 @@ This workspace unifies **three** complementary systems into a single development
 | **OpenSpec** | Spec-driven formal planning | 4 skills, 4 workflows, `openspec/` data |
 | **GSAP Skills** | Animation domain expertise | 8 specialized animation skills |
 
-**Total**: 20 agents + 49 skills + 15 workflows + validation scripts
+**Total**: 20 agents + 49 skills + 16 workflows + validation scripts
 
 ---
 
@@ -37,7 +37,7 @@ This workspace unifies **three** complementary systems into a single development
 │   ├── openspec-*/          # 4 OpenSpec skills
 │   ├── gsap-*/              # 8 GSAP animation skills
 │   └── ... (37 Kit skills)
-├── workflows/               # 15 Slash Commands (Kit + OpenSpec)
+├── workflows/               # 16 Slash Commands (Kit + OpenSpec)
 │   ├── opsx-propose.md      # OpenSpec propose
 │   ├── opsx-apply.md        # OpenSpec execute
 │   └── ... (13 more)
@@ -169,7 +169,7 @@ USER REQUEST ──→ CLASSIFY
 
 ---
 
-## 🔄 Workflows (15)
+## 🔄 Workflows (16)
 
 ### Kit Workflows (11)
 
@@ -235,7 +235,7 @@ USER REQUEST ──→ CLASSIFY
 |--------|-------|
 | **Total Agents** | 20 |
 | **Total Skills** | 49 (37 Kit + 4 OpenSpec + 8 GSAP) |
-| **Total Workflows** | 15 (11 Kit + 4 OpenSpec) |
+| **Total Workflows** | 16 (12 Kit + 4 OpenSpec) |
 | **Total Scripts** | 5 master + 12 skill-level |
 | **Coverage** | ~95% web/mobile/animation development |
 
