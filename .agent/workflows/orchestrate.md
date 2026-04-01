@@ -11,68 +11,52 @@ $ARGUMENTS
 
 ---
 
-## 🔴 CRITICAL: Minimum Agent Requirement
+## 🧠 Adaptive Agent Selection
 
-> ⚠️ **ORCHESTRATION = MINIMUM 3 DIFFERENT AGENTS**
-> 
-> If you use fewer than 3 agents, you are NOT orchestrating - you're just delegating.
-> 
-> **Validation before completion:**
-> - Count invoked agents
-> - If `agent_count < 3` → STOP and invoke more agents
-> - Single agent = FAILURE of orchestration
+> **Use the RIGHT number of agents for the task — not a hardcoded minimum.**
+
+| Task Complexity | Agents Needed | Example |
+|----------------|---------------|---------|
+| **Focused** (1-2 files, 1 domain) | 1-2 agents | "Fix the API auth bug" → debugger + security-auditor |
+| **Medium** (3-5 files, 2 domains) | 2-3 agents | "Add dark mode" → frontend + test-engineer |
+| **Complex** (5+ files, 3+ domains) | 3-5 agents | "Build checkout" → backend + frontend + db + security |
+| **Full Stack** (entire feature) | 4+ agents | "Build social platform" → planner + frontend + backend + db + devops |
+
+> 🔴 **Rule: Match agent count to complexity. Don't force 3 agents for a 1-agent task.**
 
 ### Agent Selection Matrix
 
-| Task Type | REQUIRED Agents (minimum) |
-|-----------|---------------------------|
+| Task Type | Recommended Agents |
+|-----------|--------------------|
 | **Web App** | frontend-specialist, backend-specialist, test-engineer |
 | **API** | backend-specialist, security-auditor, test-engineer |
 | **UI/Design** | frontend-specialist, seo-specialist, performance-optimizer |
 | **Database** | database-architect, backend-specialist, security-auditor |
 | **Full Stack** | project-planner, frontend-specialist, backend-specialist, devops-engineer |
-| **Debug** | debugger, explorer-agent, test-engineer |
-| **Security** | security-auditor, penetration-tester, devops-engineer |
+| **Debug** | debugger, test-engineer |
+| **Security** | security-auditor, devops-engineer |
 
 ---
 
-## Pre-Flight: Mode Check
+## 2-Phase Orchestration
 
-| Current Mode | Task Type | Action |
-|--------------|-----------|--------|
-| **plan** | Any | ✅ Proceed with planning-first approach |
-| **edit** | Simple execution | ✅ Proceed directly |
-| **edit** | Complex/multi-file | ⚠️ Ask: "This task requires planning. Switch to plan mode?" |
-| **ask** | Any | ⚠️ Ask: "Ready to orchestrate. Switch to edit or plan mode?" |
+### PHASE 1: PLANNING (Quick Assessment)
 
----
+**For simple tasks (1-2 agents):** Skip formal planning. Assess, then execute.
 
-## 🔴 STRICT 2-PHASE ORCHESTRATION
-
-### PHASE 1: PLANNING (Sequential - NO parallel agents)
+**For complex tasks (3+ agents):**
 
 | Step | Agent | Action |
 |------|-------|--------|
-| 1 | `project-planner` | Create docs/PLAN.md |
-| 2 | (optional) `explorer-agent` | Codebase discovery if needed |
+| 1 | `project-planner` | Create task breakdown |
+| 2 | (optional) Read CODEBASE.md | Understand dependencies |
 
-> 🔴 **NO OTHER AGENTS during planning!** Only project-planner and explorer-agent.
+> After planning, show the user what you'll do and which agents you'll use.
+> For complex tasks, ask for approval before implementing.
 
-### ⏸️ CHECKPOINT: User Approval
+### PHASE 2: IMPLEMENTATION
 
-```
-After PLAN.md is complete, ASK:
-
-"✅ Plan created: docs/PLAN.md
-
-Do you approve? (Y/N)
-- Y: Start implementation
-- N: I'll revise the plan"
-```
-
-> 🔴 **DO NOT proceed to Phase 2 without explicit user approval!**
-
-### PHASE 2: IMPLEMENTATION (Parallel agents after approval)
+Execute agents based on dependency order:
 
 | Parallel Group | Agents |
 |----------------|--------|
@@ -80,25 +64,22 @@ Do you approve? (Y/N)
 | Core | `backend-specialist`, `frontend-specialist` |
 | Polish | `test-engineer`, `devops-engineer` |
 
-> ✅ After user approval, invoke multiple agents in PARALLEL.
+> ✅ Independent tasks should run in parallel when possible.
 
-## Available Agents (17 total)
+## Available Agents (20 total)
 
 | Agent | Domain | Use When |
 |-------|--------|----------|
-| `project-planner` | Planning | Task breakdown, PLAN.md |
-| `explorer-agent` | Discovery | Codebase mapping |
+| `project-planner` | Planning | Task breakdown |
 | `frontend-specialist` | UI/UX | React, Vue, CSS, HTML |
 | `backend-specialist` | Server | API, Node.js, Python |
 | `database-architect` | Data | SQL, NoSQL, Schema |
 | `security-auditor` | Security | Vulnerabilities, Auth |
-| `penetration-tester` | Security | Active testing |
 | `test-engineer` | Testing | Unit, E2E, Coverage |
 | `devops-engineer` | Ops | CI/CD, Docker, Deploy |
 | `mobile-developer` | Mobile | React Native, Flutter |
 | `performance-optimizer` | Speed | Lighthouse, Profiling |
 | `seo-specialist` | SEO | Meta, Schema, Rankings |
-| `documentation-writer` | Docs | README, API docs |
 | `debugger` | Debug | Error analysis |
 | `game-developer` | Games | Unity, Godot |
 | `orchestrator` | Meta | Coordination |
@@ -108,9 +89,9 @@ Do you approve? (Y/N)
 ## Orchestration Protocol
 
 ### Step 1: Analyze Task Domains
-Identify ALL domains this task touches:
+Identify which domains this task touches:
 ```
-□ Security     → security-auditor, penetration-tester
+□ Security     → security-auditor
 □ Backend/API  → backend-specialist
 □ Frontend/UI  → frontend-specialist
 □ Database     → database-architect
@@ -119,63 +100,30 @@ Identify ALL domains this task touches:
 □ Mobile       → mobile-developer
 □ Performance  → performance-optimizer
 □ SEO          → seo-specialist
-□ Planning     → project-planner
+□ Animation    → frontend-specialist + gsap-* skills
 ```
 
-### Step 2: Phase Detection
+### Step 2: Select Agents (match to complexity)
 
-| If Plan Exists | Action |
-|----------------|--------|
-| NO `docs/PLAN.md` | → Go to PHASE 1 (planning only) |
-| YES `docs/PLAN.md` + user approved | → Go to PHASE 2 (implementation) |
+**Simple (1-2 domains):** Select 1-2 agents. Execute directly.
+**Complex (3+ domains):** Select 3+ agents. Plan first, then implement.
 
-### Step 3: Execute Based on Phase
-
-**PHASE 1 (Planning):**
-```
-Use the project-planner agent to create PLAN.md
-→ STOP after plan is created
-→ ASK user for approval
-```
-
-**PHASE 2 (Implementation - after approval):**
-```
-Invoke agents in PARALLEL:
-Use the frontend-specialist agent to [task]
-Use the backend-specialist agent to [task]
-Use the test-engineer agent to [task]
-```
+### Step 3: Execute
 
 **🔴 CRITICAL: Context Passing (MANDATORY)**
 
-When invoking ANY subagent, you MUST include:
+When coordinating agents, always include:
 
 1. **Original User Request:** Full text of what user asked
-2. **Decisions Made:** All user answers to Socratic questions
+2. **Decisions Made:** All user answers to questions
 3. **Previous Agent Work:** Summary of what previous agents did
-4. **Current Plan State:** If plan files exist in workspace, include them
+4. **Current State:** Relevant files and context
 
-**Example with FULL context:**
-```
-Use the project-planner agent to create PLAN.md:
-
-**CONTEXT:**
-- User Request: "A social platform for students, using mock data"
-- Decisions: Tech=Vue 3, Layout=Grid Widgets, Auth=Mock, Design=Youthful & dynamic
-- Previous Work: Orchestrator asked 6 questions, user chose all options
-- Current Plan: playful-roaming-dream.md exists in workspace with initial structure
-
-**TASK:** Create detailed PLAN.md based on ABOVE decisions. Do NOT infer from folder name.
-```
-
-> ⚠️ **VIOLATION:** Invoking subagent without full context = subagent will make wrong assumptions!
-
-
-### Step 4: Verification (MANDATORY)
-The LAST agent must run appropriate verification scripts:
+### Step 4: Verification
+Run appropriate validation scripts:
 ```bash
-python .agent/skills/vulnerability-scanner/scripts/security_scan.py .
-python .agent/skills/lint-and-validate/scripts/lint_runner.py .
+python3 .agent/skills/vulnerability-scanner/scripts/security_scan.py .
+python3 .agent/skills/lint-and-validate/scripts/lint_runner.py .
 ```
 
 ### Step 5: Synthesize Results
@@ -191,30 +139,19 @@ Combine all agent outputs into unified report.
 ### Task
 [Original task summary]
 
-### Mode
-[Current Antigravity Agent mode: plan/edit/ask]
-
-### Agents Invoked (MINIMUM 3)
+### Agents Invoked
 | # | Agent | Focus Area | Status |
 |---|-------|------------|--------|
-| 1 | project-planner | Task breakdown | ✅ |
-| 2 | frontend-specialist | UI implementation | ✅ |
-| 3 | test-engineer | Verification scripts | ✅ |
-
-### Verification Scripts Executed
-- [x] security_scan.py → Pass/Fail
-- [x] lint_runner.py → Pass/Fail
+| 1 | agent-name | Focus | ✅ |
 
 ### Key Findings
 1. **[Agent 1]**: Finding
 2. **[Agent 2]**: Finding
-3. **[Agent 3]**: Finding
 
 ### Deliverables
-- [ ] PLAN.md created
-- [ ] Code implemented
-- [ ] Tests passing
-- [ ] Scripts verified
+- [x] Code implemented
+- [x] Tests passing
+- [x] Validation scripts run
 
 ### Summary
 [One paragraph synthesis of all agent work]
@@ -222,16 +159,4 @@ Combine all agent outputs into unified report.
 
 ---
 
-## 🔴 EXIT GATE
-
-Before completing orchestration, verify:
-
-1. ✅ **Agent Count:** `invoked_agents >= 3`
-2. ✅ **Scripts Executed:** At least `security_scan.py` ran
-3. ✅ **Report Generated:** Orchestration Report with all agents listed
-
-> **If any check fails → DO NOT mark orchestration complete. Invoke more agents or run scripts.**
-
----
-
-**Begin orchestration now. Select 3+ agents, execute sequentially, run verification scripts, synthesize results.**
+**Begin orchestration now. Analyze the task, select the right agents, execute, verify, synthesize.**

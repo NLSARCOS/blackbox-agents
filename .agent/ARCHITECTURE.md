@@ -204,8 +204,8 @@ USER REQUEST ──→ CLASSIFY
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
-| `checklist.py` | Priority-based project audit | `python .agent/scripts/checklist.py .` |
-| `verify_all.py` | Full verification suite | `python .agent/scripts/verify_all.py . --url <URL>` |
+| `checklist.py` | Priority-based project audit | `python3 .agent/scripts/checklist.py .` |
+| `verify_all.py` | Full verification suite | `python3 .agent/scripts/verify_all.py . --url <URL>` |
 
 ### Skill-Level Scripts (12)
 
