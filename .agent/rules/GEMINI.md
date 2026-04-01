@@ -157,9 +157,16 @@ When user's prompt is NOT in English:
 
 **Before modifying ANY file:**
 
-1. Check `CODEBASE.md` → File Dependencies
+1. Check `.agent/CODEBASE.md` → File Dependencies
 2. Identify dependent files
 3. Update ALL affected files together
+
+**CODEBASE.md auto-management:**
+- 🔴 If `CODEBASE.md` is empty/template, scan the project on first significant task and populate it
+- Update silently when: new files created, files deleted, imports changed
+- Only track files with 2+ dependents (ignore leaf files)
+- Max 300 lines — prune low-impact entries
+- Trigger full re-scan on user command: "update codebase map" or "scan project"
 
 ### 🗺️ System Map Read
 
@@ -214,6 +221,73 @@ When user's prompt is NOT in English:
 - 🔴 **Silent updates**: Update MEMORY.md without announcing it to the user
 - 🔴 **No confirmation needed**: Just write when triggers match
 - 🔴 **Keep it lean**: If >200 lines, remove oldest Session Notes first
+
+---
+
+### 🔀 Parallel Dispatch Rules
+
+> **When multiple independent tasks exist, execute them concurrently instead of sequentially.**
+
+**WHEN TO PARALLELIZE:**
+
+| Scenario | Parallel? | Example |
+|----------|----------|--------|
+| Tasks touch different files/domains | ✅ Yes | Frontend + API + DB migration |
+| Tasks have no data dependency | ✅ Yes | Create login page + create dashboard |
+| One task's output is another's input | ❌ No | Create API → then create frontend that calls it |
+| Same file modified by both tasks | ❌ No | Both tasks edit layout.tsx |
+
+**HOW TO PARALLELIZE:**
+
+1. **Decompose** — Break the request into independent subtasks
+2. **Classify** — Mark each as `parallel-safe` or `sequential-required`
+3. **Dispatch** — Run parallel-safe tasks simultaneously using concurrent tool calls
+4. **Merge** — After parallel tasks complete, run sequential tasks that depend on them
+
+**DISPATCH PATTERN:**
+```
+User: "Create the auth system with login page, API routes, and DB schema"
+
+Decompose:
+  [1] DB schema (migrations)          → parallel-safe
+  [2] API routes (/api/auth/*)        → depends on [1]
+  [3] Login page UI                   → parallel-safe
+  [4] Connect UI to API               → depends on [2] + [3]
+
+Execution:
+  Phase 1: [1] DB + [3] Login UI     → in parallel
+  Phase 2: [2] API routes            → needs [1] done
+  Phase 3: [4] Integration           → needs [2] + [3] done
+```
+
+**RULES:**
+- 🔴 Never parallelize tasks that write to the same file
+- 🔴 Always merge results and check for conflicts after parallel execution
+- 🔴 If unsure about dependencies, default to sequential
+- ✅ Use Ollama for autocontained text tasks in parallel with your own work
+- ✅ Dispatch independent research/analysis in parallel
+
+### ✅ Auto-Validation After Changes
+
+> **After implementing significant changes, automatically run the relevant validation script.**
+
+**AUTOMATIC TRIGGERS (no user action needed):**
+
+| What Changed | Auto-Run Script | Condition |
+|-------------|----------------|----------|
+| Frontend UI (components, pages, CSS) | `ux_audit.py` | Changed 2+ UI files |
+| Database schema/migrations | `schema_validator.py` | Any schema change |
+| Auth/security code | `security_scan.py` | Any auth-related change |
+| API routes/endpoints | `test_runner.py` | Changed API handler |
+| Dependencies (package.json) | `dependency_analyzer.py` | Added/updated packages |
+| SEO-relevant pages | `seo_checker.py` | Changed meta/head/title |
+
+**RULES:**
+- Run validation silently as the final step of implementation
+- Report results as a brief summary: "✅ Validation passed" or "⚠️ Found 2 issues: ..."
+- Do NOT block on warnings — report and continue
+- Only auto-validate after **significant** changes (2+ files or critical path)
+- User can disable with: "skip validation" or "no checks"
 
 ---
 
