@@ -1,4 +1,4 @@
-# 🚀 Antigravity Unified — AI Agent Toolkit
+# ⬛ Blackbox Agents — AI Agent Toolkit
 
 > **20 Agents + 49 Skills + 15 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
 
@@ -16,10 +16,10 @@ A unified AI development environment that combines three powerful systems into a
 
 ```bash
 # Clone this repo
-git clone https://github.com/nelsonperformanze/antigravity-unified.git
+git clone https://github.com/NLSARCOS/blackbox-agents.git
 
 # Copy .agent/ to any project
-cp -r antigravity-unified/.agent/ /your/project/
+cp -r blackbox-agents/.agent/ /your/project/
 ```
 
 **That's it.** No `npm install`, no CLI tools, no dependencies. Everything is Markdown that your AI reads.
