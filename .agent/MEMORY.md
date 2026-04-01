@@ -13,6 +13,7 @@
 - 2026-03-31 | Daily readiness should be observable in one command | `doctor.py` is the preferred high-signal operational entry point
 - 2026-03-31 | Validation should adapt to the actual changed scope | `smart_validate.py` is the default post-edit audit path
 - 2026-03-31 | Project learning must stay repository-scoped | `/learn` writes to `.agent/project-skills/`, not the shared toolkit skills
+- 2026-03-31 | Token efficiency matters for daily use | `context_pack.py` is the preferred low-cost startup context
 
 ---
 

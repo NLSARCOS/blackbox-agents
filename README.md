@@ -30,6 +30,7 @@ cp -r blackbox-agents/.agent/ /your/project/
 
 The **Super Orchestrator** automatically analyzes every request and routes it to the right specialist:
 
+- **Fast Path Context Pack:** Start with a compact repo snapshot before loading heavier docs.
 - **Risk-Based OpenSpec:** Formal planning only when ambiguity or risk is material.
 - **Project Learning (`/learn`):** AI can extract stable repo-specific patterns into project-scoped skills, with threshold-based auto-materialization inside the same repo.
 - **Auto-Validation:** Instantly catches security, UX, and SEO regressions on local changes.
@@ -141,6 +142,9 @@ Built-in Python scripts for project auditing (no external deps):
 # Daily operational check
 python3 .agent/scripts/doctor.py
 
+# Low-token startup context only
+python3 .agent/scripts/context_pack.py
+
 # Change-aware validation after edits
 python3 .agent/scripts/smart_validate.py
 
@@ -156,7 +160,8 @@ python3 .agent/scripts/verify_all.py . --url http://localhost:3000
 
 Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
 
-`doctor.py` is the recommended starting point for daily use. It summarizes `.agent` health, preview readiness, detected project scripts, and suggested next actions.
+`doctor.py` is the recommended starting point for daily use. It now includes the compact context pack, `.agent` health, preview readiness, detected project scripts, and suggested next actions in one command.
+`context_pack.py` is the best token-saving entry point because it gives a compact operational summary before the system loads heavier docs or skills.
 `smart_validate.py` is the recommended default after local edits because it runs only the checks most relevant to the files you changed.
 `/learn` now supports project-scoped automatic learning through `.agent/project-skills/_registry.json`, so repeated local conventions can become reusable skills without polluting the shared toolkit.
 

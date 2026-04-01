@@ -207,6 +207,7 @@ USER REQUEST ──→ CLASSIFY
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
+| `context_pack.py` | Low-token operational project snapshot | `python3 .agent/scripts/context_pack.py` |
 | `doctor.py` | Daily operational health check | `python3 .agent/scripts/doctor.py` |
 | `smart_validate.py` | Change-aware validation runner | `python3 .agent/scripts/smart_validate.py` |
 | `self_check.py` | Internal `.agent` consistency audit | `python3 .agent/scripts/self_check.py .` |
@@ -239,7 +240,7 @@ USER REQUEST ──→ CLASSIFY
 | **Total Agents** | 20 |
 | **Total Skills** | 49 (37 Kit + 4 OpenSpec + 8 GSAP) |
 | **Total Workflows** | 16 (12 Kit + 4 OpenSpec) |
-| **Total Scripts** | 5 master + 12 skill-level |
+| **Total Scripts** | 6 master + 12 skill-level |
 | **Coverage** | ~95% web/mobile/animation development |
 
 ---
@@ -272,5 +273,7 @@ This `.agent` system is optimized for everyday development work:
 - **Keep memory and codebase maps current** so future sessions start with context instead of re-discovery.
 - **Prefer parallel subagents** when tasks are independent and write scopes do not overlap.
 - **Start sessions with `doctor.py`** when you want a fast, high-signal readiness check.
+- **Use `context_pack.py` first** when you want to minimize token usage before escalating to full docs.
+- **Use `doctor.py` as the default entry point** when you want the compact context pack plus operational health in one command.
 - **Keep learned skills project-scoped** in `.agent/project-skills/` so one repo does not contaminate another.
 - **Allow automatic learning only inside the project boundary** using threshold-based materialization.

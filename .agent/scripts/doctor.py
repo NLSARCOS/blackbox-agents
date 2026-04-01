@@ -16,6 +16,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from context_pack import build_pack
+
 
 ROOT = Path(".").resolve()
 AGENT_SCRIPTS = ROOT / ".agent" / "scripts"
@@ -97,6 +99,8 @@ def recommend_actions(
 
     if not self_check_ok:
         actions.append("Run `.agent` maintenance before coding: `python3 .agent/scripts/self_check.py .`")
+    else:
+        actions.append("Start with a compact snapshot: `python3 .agent/scripts/context_pack.py`")
 
     if script_flags.get("dev") and not preview_ok:
         actions.append("Start local preview: `python3 .agent/scripts/auto_preview.py start`")
@@ -127,6 +131,7 @@ def recommend_actions(
 def render_human(results: dict[str, object]) -> int:
     self_check = results["self_check"]
     preview = results["preview"]
+    context_pack = results["context_pack"]
     scripts = results["project_scripts"]
     git_state = results["git_state"]
     learning_state = results["learning_state"]
@@ -140,6 +145,11 @@ def render_human(results: dict[str, object]) -> int:
         print(f"Git Working Tree: {'dirty' if git_state['dirty'] else 'clean'}")
     if learning_state["available"]:
         print(f"Learning Topics: {learning_state['tracked_topics']} tracked")
+
+    print("\nFast Context:")
+    print(f"  - Stack: {', '.join(context_pack['stack']) if context_pack['stack'] else 'unknown'}")
+    print(f"  - Suggested agents: {', '.join(context_pack['suggested_agents'])}")
+    print(f"  - Project skills: {', '.join(context_pack['project_skills']) if context_pack['project_skills'] else 'none'}")
 
     if scripts:
         print("\nDetected package scripts:")
@@ -181,6 +191,7 @@ def main() -> None:
 
     self_check = run_command([sys.executable, str(AGENT_SCRIPTS / "self_check.py"), str(ROOT)])
     preview = run_command([sys.executable, str(AGENT_SCRIPTS / "auto_preview.py"), "check"])
+    context_pack = build_pack()
     scripts = detect_project_scripts()
     git_state = detect_git_state()
     learning_state = detect_learning_state()
@@ -196,6 +207,7 @@ def main() -> None:
         "project": str(ROOT),
         "self_check": self_check,
         "preview": preview,
+        "context_pack": context_pack,
         "project_scripts": scripts,
         "git_state": git_state,
         "learning_state": learning_state,

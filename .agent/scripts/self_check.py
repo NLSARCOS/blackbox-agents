@@ -249,6 +249,25 @@ def validate_learning_registry(agent_dir: Path, findings: list[Finding]) -> None
         add("ERROR", "learning registry auto_materialize must be boolean", findings)
 
 
+def validate_context_pack(agent_dir: Path, findings: list[Finding]) -> None:
+    script = agent_dir / "scripts" / "context_pack.py"
+    if not script.is_file():
+        add("ERROR", "missing `.agent/scripts/context_pack.py`", findings)
+        return
+
+    readme = (agent_dir.parent / "README.md").read_text(encoding="utf-8")
+    architecture = (agent_dir / "ARCHITECTURE.md").read_text(encoding="utf-8")
+    gemini = (agent_dir / "rules" / "GEMINI.md").read_text(encoding="utf-8")
+
+    for label, text in [
+        ("README", readme),
+        ("ARCHITECTURE", architecture),
+        ("GEMINI", gemini),
+    ]:
+        if "context_pack.py" not in text:
+            add("WARN", f"{label} does not mention `context_pack.py`", findings)
+
+
 def print_report(findings: list[Finding], strict: bool) -> int:
     errors = [item for item in findings if item.level == "ERROR"]
     warnings = [item for item in findings if item.level == "WARN"]
@@ -288,6 +307,7 @@ def main() -> None:
     validate_preview_workflow(agent_dir, findings)
     validate_learn_workflow(agent_dir, findings)
     validate_learning_registry(agent_dir, findings)
+    validate_context_pack(agent_dir, findings)
 
     sys.exit(print_report(findings, args.strict))
 

@@ -182,6 +182,27 @@ When user's prompt is NOT in English:
 - Memory: `.agent/MEMORY.md` (project decisions & context)
 - OpenSpec data: `openspec/` (change artifacts)
 
+### ⚡ Fast Path (Token Saver)
+
+> **Default to the smallest useful context first. Escalate only when complexity justifies it.**
+
+**Fast path order:**
+1. Read `python3 .agent/scripts/context_pack.py` output first.
+2. For simple low-risk tasks, use the context pack + primary agent only.
+3. Load full `ARCHITECTURE.md`, workflows, and extra skills only for medium/high-risk work.
+
+**When to stay in fast path:**
+- single-file or localized edits
+- clear bug fixes
+- narrow UI or API changes
+- no architecture ambiguity
+
+**When to escalate beyond fast path:**
+- multi-domain work
+- architecture changes
+- unclear requirements
+- security/auth/data/production risk
+
 ### 🧠 Read → Understand → Apply
 
 ```

@@ -26,6 +26,7 @@
 - `scripts/checklist.py` → incremental validation entry point
 - `scripts/verify_all.py` → full verification entry point
 - `scripts/doctor.py` → daily operational readiness check for `.agent` and local preview
+- `scripts/context_pack.py` → smallest useful context snapshot for low-token startup
 - `scripts/smart_validate.py` → targeted validation based on the current changed-file set
 
 ---
@@ -38,6 +39,7 @@
 - `project-skills/` → affects project-specific behavior reuse without contaminating the shared toolkit
 - `scripts/checklist.py` and `scripts/verify_all.py` → affect day-to-day quality gates and deploy confidence
 - `scripts/doctor.py` → affects daily workflow speed, readiness visibility, and operator confidence
+- `scripts/context_pack.py` → affects token efficiency and context loading strategy
 - `scripts/smart_validate.py` → affects validation speed and reduces unnecessary full-suite runs
 
 ---
@@ -48,6 +50,7 @@
 |---------|------------|-------|
 | Global behavior | `.agent/rules/GEMINI.md` | Read first for universal rules |
 | System overview | `.agent/ARCHITECTURE.md` | Best starting point for humans and orchestrators |
+| Low-token startup | `.agent/scripts/context_pack.py` | Fastest way to gather operational context |
 | Daily readiness | `.agent/scripts/doctor.py` | Fast health snapshot before active work |
 | Change-aware validation | `.agent/scripts/smart_validate.py` | Best default check after local edits |
 | Daily execution | `.agent/agents/orchestrator.md` | Main decision engine |
