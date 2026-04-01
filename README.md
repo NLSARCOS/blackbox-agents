@@ -31,7 +31,7 @@ cp -r blackbox-agents/.agent/ /your/project/
 The **Super Orchestrator** automatically analyzes every request and routes it to the right specialist:
 
 - **Risk-Based OpenSpec:** Formal planning only when ambiguity or risk is material.
-- **Auto-Learning (`/learn`):** AI automatically extracts repetitive patterns into permanent private skills.
+- **Project Learning (`/learn`):** AI can extract stable repo-specific patterns into project-scoped skills, with threshold-based auto-materialization inside the same repo.
 - **Auto-Validation:** Instantly catches security, UX, and SEO regressions on local changes.
 
 ```
@@ -96,6 +96,7 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `/plan` | 4-phase project planning |
 | `/create` | Build new app from scratch |
 | `/debug` | Systematic debugging |
+| `/learn` | Extract a reusable project-specific skill |
 | `/test` | Generate and run tests |
 | `/deploy` | Pre-flight checks + deploy |
 | `/orchestrate` | Multi-agent coordination |
@@ -104,7 +105,10 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `/opsx-explore` | Think/explore before building |
 | `/opsx-archive` | Archive completed change |
 | `/ui-ux-pro-max` | Premium UI design |
-| ...and 4 more | |
+| `/preview` | Start, inspect, and manage local preview |
+| `/status` | Show current system and project status |
+| `/brainstorm` | Structured discovery and ideation |
+| `/enhance` | Improve existing codebases |
 
 ---
 
@@ -119,6 +123,7 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 │   ├── openspec-*/          # 4 planning skills
 │   ├── gsap-*/              # 8 animation skills
 │   └── .../                 # 37 kit skills
+├── project-skills/          # project-scoped learned skills from /learn
 ├── workflows/               # 16 slash commands
 ├── rules/
 │   └── GEMINI.md            # Master config (routing rules)
@@ -153,6 +158,7 @@ Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
 
 `doctor.py` is the recommended starting point for daily use. It summarizes `.agent` health, preview readiness, detected project scripts, and suggested next actions.
 `smart_validate.py` is the recommended default after local edits because it runs only the checks most relevant to the files you changed.
+`/learn` now supports project-scoped automatic learning through `.agent/project-skills/_registry.json`, so repeated local conventions can become reusable skills without polluting the shared toolkit.
 
 ---
 

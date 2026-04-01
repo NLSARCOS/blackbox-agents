@@ -65,7 +65,7 @@ def add(level: str, message: str, findings: list[Finding]) -> None:
 
 
 def validate_required_structure(agent_dir: Path, findings: list[Finding]) -> None:
-    required_dirs = ["agents", "skills", "workflows", "rules", "scripts"]
+    required_dirs = ["agents", "skills", "workflows", "rules", "scripts", "project-skills"]
     required_files = ["ARCHITECTURE.md", "CODEBASE.md", "MEMORY.md", "rules/GEMINI.md"]
 
     for rel in required_dirs:
@@ -119,6 +119,8 @@ def validate_count_docs(agent_dir: Path, findings: list[Finding]) -> None:
     actual_agents = len(list((agent_dir / "agents").glob("*.md")))
     actual_workflows = len(list((agent_dir / "workflows").glob("*.md")))
     actual_skills = count_skill_dirs(agent_dir / "skills")
+    openspec_workflows = len(list((agent_dir / "workflows").glob("opsx-*.md")))
+    kit_workflows = actual_workflows - openspec_workflows
 
     architecture = (agent_dir / "ARCHITECTURE.md").read_text(encoding="utf-8")
     gemini = (agent_dir / "rules" / "GEMINI.md").read_text(encoding="utf-8")
@@ -152,6 +154,21 @@ def validate_count_docs(agent_dir: Path, findings: list[Finding]) -> None:
         elif "workflow" in label.lower() and numbers[0] != actual_workflows:
             add("ERROR", f"{label} mismatch: documented={numbers[0]}, actual={actual_workflows}", findings)
 
+    kit_match = re.search(r"### Kit Workflows \((\d+)\)", architecture)
+    open_match = re.search(r"### OpenSpec Workflows \((\d+)\)", architecture)
+    if kit_match and int(kit_match.group(1)) != kit_workflows:
+        add(
+            "ERROR",
+            f"ARCHITECTURE kit workflow count mismatch: documented={kit_match.group(1)}, actual={kit_workflows}",
+            findings,
+        )
+    if open_match and int(open_match.group(1)) != openspec_workflows:
+        add(
+            "ERROR",
+            f"ARCHITECTURE OpenSpec workflow count mismatch: documented={open_match.group(1)}, actual={openspec_workflows}",
+            findings,
+        )
+
 
 def validate_parallel_skill(agent_dir: Path, findings: list[Finding]) -> None:
     skill_file = agent_dir / "skills" / "parallel-agents" / "SKILL.md"
@@ -177,6 +194,59 @@ def validate_preview_workflow(agent_dir: Path, findings: list[Finding]) -> None:
         script_mentions = f'"{action}"' in script_text or f"'{action}'" in script_text
         if workflow_mentions and not script_mentions:
             add("ERROR", f"preview workflow mentions '{action}' but auto_preview.py does not support it", findings)
+
+
+def validate_learn_workflow(agent_dir: Path, findings: list[Finding]) -> None:
+    workflow = agent_dir / "workflows" / "learn.md"
+    gemini = agent_dir / "rules" / "GEMINI.md"
+    architecture = agent_dir / "ARCHITECTURE.md"
+    readme = agent_dir.parent / "README.md"
+
+    if not workflow.is_file():
+        return
+
+    workflow_text = workflow.read_text(encoding="utf-8")
+    gemini_text = gemini.read_text(encoding="utf-8") if gemini.is_file() else ""
+    architecture_text = architecture.read_text(encoding="utf-8") if architecture.is_file() else ""
+    readme_text = readme.read_text(encoding="utf-8") if readme.is_file() else ""
+
+    if re.search(r"Create a new directory at `\.agent/skills/", workflow_text) or "permanent `.agent/skills/`" in gemini_text:
+        add("ERROR", "learn workflow still points project learning at shared `.agent/skills/`", findings)
+
+    if ".agent/project-skills/" not in workflow_text:
+        add("ERROR", "learn workflow does not reference `.agent/project-skills/`", findings)
+
+    for label, text in [
+        ("GEMINI", gemini_text),
+        ("ARCHITECTURE", architecture_text),
+        ("README", readme_text),
+    ]:
+        if "/learn" not in text:
+            add("WARN", f"{label} does not mention `/learn` even though learn workflow exists", findings)
+
+
+def validate_learning_registry(agent_dir: Path, findings: list[Finding]) -> None:
+    registry_path = agent_dir / "project-skills" / "_registry.json"
+    if not registry_path.is_file():
+        add("ERROR", "missing `.agent/project-skills/_registry.json`", findings)
+        return
+
+    try:
+        import json
+
+        data = json.loads(registry_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        add("ERROR", f"invalid learning registry JSON: {exc}", findings)
+        return
+
+    settings = data.get("settings", {})
+    threshold = settings.get("threshold")
+    if not isinstance(threshold, int) or threshold < 1:
+        add("ERROR", "learning registry threshold must be a positive integer", findings)
+
+    auto_materialize = settings.get("auto_materialize")
+    if not isinstance(auto_materialize, bool):
+        add("ERROR", "learning registry auto_materialize must be boolean", findings)
 
 
 def print_report(findings: list[Finding], strict: bool) -> int:
@@ -216,6 +286,8 @@ def main() -> None:
     validate_count_docs(agent_dir, findings)
     validate_parallel_skill(agent_dir, findings)
     validate_preview_workflow(agent_dir, findings)
+    validate_learn_workflow(agent_dir, findings)
+    validate_learning_registry(agent_dir, findings)
 
     sys.exit(print_report(findings, args.strict))
 

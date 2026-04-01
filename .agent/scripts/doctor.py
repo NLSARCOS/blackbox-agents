@@ -65,9 +65,31 @@ def detect_git_state() -> dict[str, object]:
     }
 
 
+def detect_learning_state() -> dict[str, object]:
+    registry_path = ROOT / ".agent" / "project-skills" / "_registry.json"
+    if not registry_path.exists():
+        return {"available": False, "ready_topics": [], "tracked_topics": 0}
+
+    data = json.loads(registry_path.read_text(encoding="utf-8"))
+    threshold = data.get("settings", {}).get("threshold", 3)
+    topics = data.get("topics", {})
+    ready = [
+        topic
+        for topic, item in topics.items()
+        if item.get("count", 0) >= threshold and not item.get("materialized", False)
+    ]
+    return {
+        "available": True,
+        "threshold": threshold,
+        "tracked_topics": len(topics),
+        "ready_topics": ready,
+    }
+
+
 def recommend_actions(
     script_flags: dict[str, bool],
     git_state: dict[str, object],
+    learning_state: dict[str, object],
     self_check_ok: bool,
     preview_ok: bool,
 ) -> list[str]:
@@ -93,6 +115,9 @@ def recommend_actions(
     elif git_state.get("available"):
         actions.append("Working tree is clean; use `smart_validate.py` after your next set of edits")
 
+    if learning_state.get("ready_topics"):
+        actions.append("Project patterns are ready to persist; review `python3 .agent/scripts/learn_registry.py status`")
+
     if not actions:
         actions.append("Project has no detected package scripts; rely on `.agent` audits and manual run commands")
 
@@ -104,6 +129,7 @@ def render_human(results: dict[str, object]) -> int:
     preview = results["preview"]
     scripts = results["project_scripts"]
     git_state = results["git_state"]
+    learning_state = results["learning_state"]
     recommendations = results["recommendations"]
 
     print("\n=== .agent Doctor ===")
@@ -112,6 +138,8 @@ def render_human(results: dict[str, object]) -> int:
     print(f"Preview: {'Running/Healthy' if preview['ok'] else 'Stopped or unhealthy'}")
     if git_state["available"]:
         print(f"Git Working Tree: {'dirty' if git_state['dirty'] else 'clean'}")
+    if learning_state["available"]:
+        print(f"Learning Topics: {learning_state['tracked_topics']} tracked")
 
     if scripts:
         print("\nDetected package scripts:")
@@ -133,6 +161,11 @@ def render_human(results: dict[str, object]) -> int:
         print("\nPreview Summary:")
         print(preview["stdout"])
 
+    if learning_state["available"] and learning_state["ready_topics"]:
+        print("\nLearning Ready:")
+        for topic in learning_state["ready_topics"]:
+            print(f"  - {topic}")
+
     print("\nRecommended Next Actions:")
     for action in recommendations:
         print(f"  - {action}")
@@ -150,7 +183,14 @@ def main() -> None:
     preview = run_command([sys.executable, str(AGENT_SCRIPTS / "auto_preview.py"), "check"])
     scripts = detect_project_scripts()
     git_state = detect_git_state()
-    recommendations = recommend_actions(scripts, git_state, bool(self_check["ok"]), bool(preview["ok"]))
+    learning_state = detect_learning_state()
+    recommendations = recommend_actions(
+        scripts,
+        git_state,
+        learning_state,
+        bool(self_check["ok"]),
+        bool(preview["ok"]),
+    )
 
     results = {
         "project": str(ROOT),
@@ -158,6 +198,7 @@ def main() -> None:
         "preview": preview,
         "project_scripts": scripts,
         "git_state": git_state,
+        "learning_state": learning_state,
         "recommendations": recommendations,
     }
 

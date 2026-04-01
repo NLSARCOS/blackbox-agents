@@ -37,6 +37,8 @@ This workspace unifies **three** complementary systems into a single development
 │   ├── openspec-*/          # 4 OpenSpec skills
 │   ├── gsap-*/              # 8 GSAP animation skills
 │   └── ... (37 Kit skills)
+├── project-skills/          # Project-scoped learned skills created by /learn
+│   ├── _registry.json       # Learning signals, thresholds, and materialization state
 ├── workflows/               # 16 Slash Commands (Kit + OpenSpec)
 │   ├── opsx-propose.md      # OpenSpec propose
 │   ├── opsx-apply.md        # OpenSpec execute
@@ -171,7 +173,7 @@ USER REQUEST ──→ CLASSIFY
 
 ## 🔄 Workflows (16)
 
-### Kit Workflows (11)
+### Kit Workflows (12)
 
 | Command | Description |
 |---------|-------------|
@@ -180,6 +182,7 @@ USER REQUEST ──→ CLASSIFY
 | `/debug` | Systematic debugging |
 | `/deploy` | Deploy to production |
 | `/enhance` | Improve existing code |
+| `/learn` | Extract a project-scoped reusable skill |
 | `/orchestrate` | Multi-agent coordination |
 | `/plan` | Task breakdown |
 | `/preview` | Preview changes |
@@ -269,3 +272,5 @@ This `.agent` system is optimized for everyday development work:
 - **Keep memory and codebase maps current** so future sessions start with context instead of re-discovery.
 - **Prefer parallel subagents** when tasks are independent and write scopes do not overlap.
 - **Start sessions with `doctor.py`** when you want a fast, high-signal readiness check.
+- **Keep learned skills project-scoped** in `.agent/project-skills/` so one repo does not contaminate another.
+- **Allow automatic learning only inside the project boundary** using threshold-based materialization.

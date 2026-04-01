@@ -41,7 +41,7 @@ Agent activated → Check frontmatter "skills:" → Read SKILL.md (INDEX) → Re
 | **DESIGN/UI**         | "design", "UI", "page", "dashboard"          | TIER 0 + TIER 1 + Agent        | **{task-slug}.md Required** |
 | **ANIMATION**         | "animate", "scroll", "parallax", "GSAP"      | TIER 0 + GSAP Skills           | GSAP Skill Loading          |
 | **FORMAL PLANNING**   | "/opsx-propose", "spec", "formal plan"       | TIER 0 + OpenSpec              | OpenSpec Artifacts          |
-| **SLASH CMD**         | /create, /orchestrate, /debug, /opsx-*       | Command-specific flow          | Variable                    |
+| **SLASH CMD**         | /create, /orchestrate, /debug, /learn, /opsx-* | Command-specific flow        | Variable                    |
 
 ---
 
@@ -176,6 +176,7 @@ When user's prompt is NOT in English:
 
 - Agents: `.agent/agents/` (20 specialists)
 - Skills: `.agent/skills/` (49 skills — Kit + OpenSpec + GSAP)
+- Project skills: `.agent/project-skills/` (repo-scoped learned conventions from `/learn`)
 - Workflows: `.agent/workflows/` (16 workflows — Kit + OpenSpec)
 - Scripts: `.agent/scripts/` (validation & audit)
 - Memory: `.agent/MEMORY.md` (project decisions & context)
@@ -224,20 +225,31 @@ When user's prompt is NOT in English:
 
 ---
 
-### 🧠 Auto-Learning & Skill Extraction
+### 🧠 Project Learning & Skill Extraction
 
-> **Transform project-specific knowledge or recurrent corrections into permanent `.agent/skills/`.**
+> **Transform project-specific knowledge into project-scoped skills under `.agent/project-skills/`.**
 
 **WHEN TO LEARN:**
 - ✅ User explicitly invokes `/learn` or `/extract-skill`.
-- ✅ User corrects the AI on the same project-specific rule twice.
-- ✅ A complex new pattern is established (e.g., custom auth, a proprietary UI library).
+- ✅ A durable project convention has been confirmed and should be reused across future sessions.
+- ✅ Repeated corrections can be tracked automatically and promoted once the project threshold is met.
 
 **HOW TO LEARN:**
-1. Do not ask for permission if the pattern is obvious and repetitive.
-2. Automatically create a new skill directory in `.agent/skills/project-[topic]/`.
-3. Create the `SKILL.md` documenting the rules, anti-patterns, and correct code examples.
-4. Announce seamlessly: *"🧠 He notado un patrón en [topic]. He extraído esto como un nuevo skill (`project-[topic]`) para aplicarlo automáticamente en el futuro."*
+1. `/learn` creates a project-scoped skill in `.agent/project-skills/<skill-name>/`.
+2. The skill must document reusable project rules, anti-patterns, and examples grounded in the current repo.
+3. Record the learning in `.agent/MEMORY.md`.
+4. Announce clearly what was learned and where it was stored.
+
+**AUTOMATIC LEARNING LOOP:**
+1. Repeated project-specific corrections are tracked in `.agent/project-skills/_registry.json`.
+2. After the threshold is reached, the pattern becomes eligible for automatic materialization.
+3. If project auto-materialization is enabled, the system may create the initial project skill scaffold automatically.
+4. The learned skill remains project-scoped and can be refined over time.
+
+**RULES:**
+- Project learning must not write into the shared toolkit at `.agent/skills/`.
+- Automatic detection may suggest learning, but permanent extraction should be explicit unless the user has opted in for this project.
+- Learned skills are project-scoped assets, not private hidden memory.
 
 ---
 

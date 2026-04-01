@@ -10,6 +10,7 @@
 - `.agent/agents/` → specialist execution roles and orchestration personas
 - `.agent/skills/` → reusable domain knowledge and validation capabilities
 - `.agent/workflows/` → slash-command style operating procedures
+- `.agent/project-skills/` → repository-specific learned conventions created through `/learn`
 - `.agent/rules/` → global behavior and routing rules
 - `.agent/scripts/` → shared automation for validation, preview, and session state
 
@@ -21,6 +22,7 @@
 - `ARCHITECTURE.md` → high-level system map used by orchestrator and future sessions
 - `agents/orchestrator.md` → decision engine that bridges direct execution, planning, and orchestration
 - `workflows/orchestrate.md` → execution contract for multi-agent tasks
+- `workflows/learn.md` → controlled extraction of project-specific conventions into reusable project skills
 - `scripts/checklist.py` → incremental validation entry point
 - `scripts/verify_all.py` → full verification entry point
 - `scripts/doctor.py` → daily operational readiness check for `.agent` and local preview
@@ -33,6 +35,7 @@
 - `rules/GEMINI.md` → affects all agents, workflows, and the expected operating model
 - `agents/orchestrator.md` → affects routing behavior, OpenSpec escalation, and agent selection
 - `ARCHITECTURE.md` → affects onboarding, system understanding, and operator trust
+- `project-skills/` → affects project-specific behavior reuse without contaminating the shared toolkit
 - `scripts/checklist.py` and `scripts/verify_all.py` → affect day-to-day quality gates and deploy confidence
 - `scripts/doctor.py` → affects daily workflow speed, readiness visibility, and operator confidence
 - `scripts/smart_validate.py` → affects validation speed and reduces unnecessary full-suite runs
