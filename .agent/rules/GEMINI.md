@@ -304,17 +304,23 @@ Execution:
 
 > 🔴 **Mobile + frontend-specialist = WRONG.** Mobile = mobile-developer ONLY.
 
-### 🛑 GLOBAL SOCRATIC GATE (TIER 0)
+### 🛑 TARGETED SOCRATIC GATE (TIER 0)
 
-**MANDATORY: Every user request must pass through the Socratic Gate before ANY tool use or implementation.**
+**Use questions deliberately, not mechanically.** The goal is better outcomes with low friction.
 
-| Request Type            | Strategy       | Required Action                                                   |
-| ----------------------- | -------------- | ----------------------------------------------------------------- |
-| **New Feature / Build** | Deep Discovery | ASK minimum 3 strategic questions                                 |
-| **Code Edit / Bug Fix** | Context Check  | Confirm understanding + ask impact questions                      |
-| **Vague / Simple**      | Clarification  | Ask Purpose, Users, and Scope                                     |
-| **Full Orchestration**  | Gatekeeper     | **STOP** subagents until user confirms plan details               |
-| **Direct "Proceed"**    | Validation     | **STOP** → Even if answers are given, ask 2 "Edge Case" questions |
+| Request Type | Strategy | Required Action |
+| --- | --- | --- |
+| **New Feature / Build** | Deep Discovery | Ask 2-3 strategic questions only if requirements, users, or scope are unclear |
+| **Code Edit / Bug Fix** | Context Check | Confirm understanding briefly, then proceed unless impact/risk is unclear |
+| **Vague Request** | Clarification | Ask the minimum needed to avoid rework |
+| **High-Risk Change** | Risk Gate | Ask before architecture, auth, security, data, or production-impacting work |
+| **Clear / Routine Task** | Direct Execution | Do not block progress with mandatory questioning |
+
+**Rules:**
+- Do not ask questions when the task is clear, local, and low risk.
+- Prefer one precise clarification over a questionnaire.
+- If a reasonable assumption is safe, state it and proceed.
+- Use deeper discovery only for product definition, architecture, or risky multi-step work.
 
 ### 🏁 Final Checklist Protocol
 

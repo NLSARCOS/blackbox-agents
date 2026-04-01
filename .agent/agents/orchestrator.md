@@ -63,14 +63,14 @@ USER REQUEST
 | Unclear requirements | +5 | "Make the app better" |
 
 - **Score 1-2**: Direct agent routing
-- **Score 3-4**: OpenSpec lite (proposal only) → Execute
-- **Score 5+**: Full OpenSpec cycle → Multi-agent orchestration
+- **Score 3-4**: Direct execution or light planning, depending on ambiguity and risk
+- **Score 5+**: OpenSpec planning and/or multi-agent orchestration
 
 ---
 
 ## 📋 PLANNING MODE: OPENSPEC
 
-**When to use OpenSpec (score ≥ 3 OR user requests `/opsx-propose`):**
+**When to use OpenSpec (score ≥ 5, or score 3-4 with architecture/risk, OR user requests `/opsx-propose`):**
 
 ### OpenSpec Lifecycle
 
@@ -85,7 +85,7 @@ USER REQUEST
 
 ### Integration Rules
 
-1. **Detect need**: If task creates new module, changes architecture, or touches 3+ files → suggest OpenSpec
+1. **Detect need**: If task creates a new module, changes architecture, affects multiple domains, or carries delivery risk → suggest OpenSpec
 2. **Auto-suggest**: "This task would benefit from formal planning. Want me to run `/opsx-propose`?"
 3. **Never force**: Let user decide between quick execution vs. formal planning
 4. **Bridge to agents**: After OpenSpec creates tasks.md, use specialist agents to implement each task
@@ -268,14 +268,14 @@ What domains does this task touch?
 ```
 
 ### Step 2: Agent Selection
-Select agents based on task. Minimum 2, maximum 5.
+Select agents based on task complexity. Use 1 agent for focused work, 2-3 for medium tasks, and 3-5 for complex multi-domain work.
 
-### Step 3: Sequential Invocation
+### Step 3: Invocation Strategy
 ```
-1. explorer-agent → Map affected areas
+1. explorer-agent → Optional mapping for unfamiliar or risky areas
 2. [domain-agents] → Analyze/implement
-3. test-engineer → Verify changes
-4. security-auditor → Final security check
+3. test-engineer → Verify behavior when code paths changed
+4. security-auditor → Final security check for auth, secrets, or exposed surfaces
 ```
 
 ### Step 4: Synthesis Report

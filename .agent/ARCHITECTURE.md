@@ -67,15 +67,15 @@ The Super Orchestrator follows this decision flow for every request:
 ```
 USER REQUEST ──→ CLASSIFY
                     │
-    ┌───────────────┼───────────────────┐
-    ▼               ▼                   ▼
- SIMPLE          MEDIUM             COMPLEX
- (score 1-2)     (score 3-4)        (score 5+)
-    │               │                   │
-    ▼               ▼                   ▼
- Single Agent    OpenSpec Lite      Full OpenSpec
- auto-invoke     (propose only)     → Multi-agent
-                 → Execute          orchestration
+    ┌───────────────┼─────────────────────────┐
+    ▼               ▼                         ▼
+ SIMPLE          MEDIUM                    COMPLEX
+ (score 1-2)     (score 3-4)               (score 5+)
+    │               │                         │
+    ▼               ▼                         ▼
+ Single Agent    Direct execution or      OpenSpec + multi-agent
+ auto-invoke     light planning           orchestration
+                 (if ambiguity/risk)      for high-risk changes
 ```
 
 ### Complexity Scoring
@@ -252,3 +252,15 @@ USER REQUEST ──→ CLASSIFY
 | Plan | `project-planner` | brainstorming, plan-writing |
 | Animation | `frontend-specialist` | gsap-core + gsap-* |
 | Formal Plan | orchestrator | openspec-propose |
+
+---
+
+## ✅ Daily-Use Principles
+
+This `.agent` system is optimized for everyday development work:
+
+- **Default to execution** for clear, low-risk requests.
+- **Ask questions only when ambiguity, product risk, or architecture impact is real.**
+- **Escalate to planning** for multi-domain features, high-risk changes, or unclear scope.
+- **Run validation proportionally** to the size and risk of the change.
+- **Keep memory and codebase maps current** so future sessions start with context instead of re-discovery.

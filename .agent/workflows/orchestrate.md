@@ -66,7 +66,7 @@ Execute agents based on dependency order:
 
 > ✅ Independent tasks should run in parallel when possible.
 
-## Available Agents (20 total)
+## Available Agents
 
 | Agent | Domain | Use When |
 |-------|--------|----------|
@@ -83,6 +83,13 @@ Execute agents based on dependency order:
 | `debugger` | Debug | Error analysis |
 | `game-developer` | Games | Unity, Godot |
 | `orchestrator` | Meta | Coordination |
+| `penetration-tester` | Security | Offensive validation |
+| `product-owner` | Product | Scope, backlog, acceptance criteria |
+| `product-manager` | Product | Requirements and prioritization |
+| `documentation-writer` | Docs | README, changelogs, guides |
+| `qa-automation-engineer` | QA | E2E automation and pipelines |
+| `code-archaeologist` | Legacy | Brownfield analysis and refactors |
+| `explorer-agent` | Discovery | Codebase mapping and impact analysis |
 
 ---
 
@@ -120,11 +127,16 @@ When coordinating agents, always include:
 4. **Current State:** Relevant files and context
 
 ### Step 4: Verification
-Run appropriate validation scripts:
+Run appropriate validation scripts for the actual risk profile of the task:
 ```bash
 python3 .agent/skills/vulnerability-scanner/scripts/security_scan.py .
 python3 .agent/skills/lint-and-validate/scripts/lint_runner.py .
 ```
+
+Minimum expectation:
+- Run `lint_runner.py` for code changes.
+- Add `security_scan.py` for auth, secrets, infra, or exposed endpoints.
+- Add domain-specific checks when relevant (`test_runner.py`, `schema_validator.py`, `ux_audit.py`, `seo_checker.py`, `playwright_runner.py`).
 
 ### Step 5: Synthesize Results
 Combine all agent outputs into unified report.
