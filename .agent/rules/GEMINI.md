@@ -328,6 +328,9 @@ Execution:
 
 | Task Stage       | Command                                            | Purpose                        |
 | ---------------- | -------------------------------------------------- | ------------------------------ |
+| **Daily Doctor** | `python3 .agent/scripts/doctor.py`                 | Fast readiness and next-step guidance |
+| **Smart Validate** | `python3 .agent/scripts/smart_validate.py`       | Run only the most relevant checks for current edits |
+| **System Audit** | `python3 .agent/scripts/self_check.py .`           | Validate `.agent` consistency  |
 | **Manual Audit** | `python3 .agent/scripts/checklist.py .`             | Priority-based project audit   |
 | **Pre-Deploy**   | `python3 .agent/scripts/checklist.py . --url <URL>` | Full Suite + Performance + E2E |
 

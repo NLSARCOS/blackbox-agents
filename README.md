@@ -129,14 +129,26 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 Built-in Python scripts for project auditing (no external deps):
 
 ```bash
+# Daily operational check
+python3 .agent/scripts/doctor.py
+
+# Change-aware validation after edits
+python3 .agent/scripts/smart_validate.py
+
+# Internal toolkit consistency audit
+python3 .agent/scripts/self_check.py .
+
 # Quick validation during development
-python .agent/scripts/checklist.py .
+python3 .agent/scripts/checklist.py .
 
 # Full verification before deployment
-python .agent/scripts/verify_all.py . --url http://localhost:3000
+python3 .agent/scripts/verify_all.py . --url http://localhost:3000
 ```
 
 Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
+
+`doctor.py` is the recommended starting point for daily use. It summarizes `.agent` health, preview readiness, detected project scripts, and suggested next actions.
+`smart_validate.py` is the recommended default after local edits because it runs only the checks most relevant to the files you changed.
 
 ---
 

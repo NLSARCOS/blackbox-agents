@@ -59,6 +59,14 @@ def print_error(text: str):
 
 # Complete verification suite
 VERIFICATION_SUITE = [
+    # P0: System Integrity (CRITICAL)
+    {
+        "category": "System Integrity",
+        "checks": [
+            ("Agent Self Check", ".agent/scripts/self_check.py", True),
+        ]
+    },
+
     # P0: Security (CRITICAL)
     {
         "category": "Security",

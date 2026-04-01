@@ -10,6 +10,8 @@
 - 2026-03-31 | `.agent` is the daily operating system for development quality | Optimize for fast execution with explicit escalation only when risk is real
 - 2026-03-31 | Socratic questioning is targeted, not universal | Avoid blocking routine work with unnecessary discovery loops
 - 2026-03-31 | OpenSpec is reserved for high-risk or architecture-shaping work | Medium tasks may use light planning without formal proposal overhead
+- 2026-03-31 | Daily readiness should be observable in one command | `doctor.py` is the preferred high-signal operational entry point
+- 2026-03-31 | Validation should adapt to the actual changed scope | `smart_validate.py` is the default post-edit audit path
 
 ---
 
@@ -42,6 +44,7 @@
 - **central-rule-first**: `GEMINI.md` defines global behavior and must stay aligned with workflows and agents
 - **risk-based-validation**: run checks proportional to change scope instead of always forcing the full suite
 - **execution-by-default**: direct work is preferred for clear low-risk tasks; planning is an escalation path, not the default
+- **parallel-when-safe**: use subagents in parallel only when dependencies and write scopes are clearly separated
 
 ---
 
@@ -61,7 +64,7 @@
 
 ## 📝 Session Notes
 
-- 2026-03-31 | Aligned orchestration and planning rules, reduced mandatory questioning, and populated baseline system memory/docs
+- 2026-03-31 | Added self-check and doctor workflows, upgraded preview management, and reinforced safe parallel-subagent guidance
 
 ---
 

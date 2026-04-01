@@ -23,6 +23,8 @@
 - `workflows/orchestrate.md` → execution contract for multi-agent tasks
 - `scripts/checklist.py` → incremental validation entry point
 - `scripts/verify_all.py` → full verification entry point
+- `scripts/doctor.py` → daily operational readiness check for `.agent` and local preview
+- `scripts/smart_validate.py` → targeted validation based on the current changed-file set
 
 ---
 
@@ -32,6 +34,8 @@
 - `agents/orchestrator.md` → affects routing behavior, OpenSpec escalation, and agent selection
 - `ARCHITECTURE.md` → affects onboarding, system understanding, and operator trust
 - `scripts/checklist.py` and `scripts/verify_all.py` → affect day-to-day quality gates and deploy confidence
+- `scripts/doctor.py` → affects daily workflow speed, readiness visibility, and operator confidence
+- `scripts/smart_validate.py` → affects validation speed and reduces unnecessary full-suite runs
 
 ---
 
@@ -41,6 +45,8 @@
 |---------|------------|-------|
 | Global behavior | `.agent/rules/GEMINI.md` | Read first for universal rules |
 | System overview | `.agent/ARCHITECTURE.md` | Best starting point for humans and orchestrators |
+| Daily readiness | `.agent/scripts/doctor.py` | Fast health snapshot before active work |
+| Change-aware validation | `.agent/scripts/smart_validate.py` | Best default check after local edits |
 | Daily execution | `.agent/agents/orchestrator.md` | Main decision engine |
 | Manual validation | `.agent/scripts/checklist.py` | Fast audit during active development |
 | Release validation | `.agent/scripts/verify_all.py` | Full suite before deploy |

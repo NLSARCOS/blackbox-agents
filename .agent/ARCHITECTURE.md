@@ -204,6 +204,9 @@ USER REQUEST ──→ CLASSIFY
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
+| `doctor.py` | Daily operational health check | `python3 .agent/scripts/doctor.py` |
+| `smart_validate.py` | Change-aware validation runner | `python3 .agent/scripts/smart_validate.py` |
+| `self_check.py` | Internal `.agent` consistency audit | `python3 .agent/scripts/self_check.py .` |
 | `checklist.py` | Priority-based project audit | `python3 .agent/scripts/checklist.py .` |
 | `verify_all.py` | Full verification suite | `python3 .agent/scripts/verify_all.py . --url <URL>` |
 
@@ -233,7 +236,7 @@ USER REQUEST ──→ CLASSIFY
 | **Total Agents** | 20 |
 | **Total Skills** | 49 (37 Kit + 4 OpenSpec + 8 GSAP) |
 | **Total Workflows** | 15 (11 Kit + 4 OpenSpec) |
-| **Total Scripts** | 2 master + 12 skill-level |
+| **Total Scripts** | 5 master + 12 skill-level |
 | **Coverage** | ~95% web/mobile/animation development |
 
 ---
@@ -264,3 +267,5 @@ This `.agent` system is optimized for everyday development work:
 - **Escalate to planning** for multi-domain features, high-risk changes, or unclear scope.
 - **Run validation proportionally** to the size and risk of the change.
 - **Keep memory and codebase maps current** so future sessions start with context instead of re-discovery.
+- **Prefer parallel subagents** when tasks are independent and write scopes do not overlap.
+- **Start sessions with `doctor.py`** when you want a fast, high-signal readiness check.

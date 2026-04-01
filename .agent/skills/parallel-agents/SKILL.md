@@ -102,7 +102,6 @@ Agents: security-auditor → penetration-tester → synthesis
 | `devops-engineer` | DevOps | "deploy", "CI/CD", "infrastructure" |
 | `database-architect` | Database | "schema", "Prisma", "migrations" |
 | `mobile-developer` | Mobile | "React Native", "Flutter", "mobile" |
-| `api-designer` | API Design | "REST", "GraphQL", "OpenAPI" |
 | `debugger` | Debugging | "bug", "error", "not working" |
 | `explorer-agent` | Discovery | "explore", "map", "structure" |
 | `documentation-writer` | Documentation | "write docs", "create README", "generate API docs" |
@@ -158,11 +157,23 @@ After all agents complete, synthesize:
 
 ## Best Practices
 
-1. **Available agents** - 17 specialized agents can be orchestrated
+1. **Use parallelism selectively** - Only parallelize independent tasks with disjoint write scopes
 2. **Logical order** - Discovery → Analysis → Implementation → Testing
 3. **Share context** - Pass relevant findings to subsequent agents
 4. **Single synthesis** - One unified report, not separate outputs
-5. **Verify changes** - Always include test-engineer for code modifications
+5. **Verify changes** - Include test coverage and the right validation scripts for code modifications
+
+## Parallel-First Pattern
+
+Use parallel subagents when:
+- frontend and backend work are independent
+- security review can run alongside implementation
+- research or codebase mapping can happen while another agent codes
+
+Avoid parallel subagents when:
+- they must edit the same file
+- one task depends directly on the output of another
+- requirements are still ambiguous
 
 ---
 
