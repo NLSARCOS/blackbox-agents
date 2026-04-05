@@ -1,0 +1,4 @@
+# Blackbox Agents
+
+Read `AGENTS.md` first. It contains the complete system guide.
+If `AGENTS.md` doesn't exist, read `.agent/workflows/init.md` and execute /init.
