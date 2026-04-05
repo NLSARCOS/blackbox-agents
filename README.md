@@ -15,11 +15,24 @@ A unified AI development environment that combines three powerful systems into a
 
 ## ⚡ Quick Start
 
-```bash
-# Clone this repo
-git clone https://github.com/NLSARCOS/blackbox-agents.git
+**One command to install everything:**
 
-# Copy .agent/ to any project
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/NLSARCOS/blackbox-agents/main/setup.sh)
+```
+
+This copies `.agent/` into your project. Then tell your AI:
+
+```
+run /init
+```
+
+That generates `AGENTS.md` — the single file any AI reads to understand your project.
+
+**Alternative: manual install**
+
+```bash
+git clone https://github.com/NLSARCOS/blackbox-agents.git
 cp -r blackbox-agents/.agent/ /your/project/
 ```
 
