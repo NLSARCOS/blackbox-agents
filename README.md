@@ -1,6 +1,6 @@
 # ⬛ Blackbox Agents — AI Agent Toolkit
 
-> **20 Agents + 58 Skills + 16 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
+> **20 Agents + 67 Skills + 25 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
 
 A unified AI development environment that combines three powerful systems into a single, portable toolkit:
 
@@ -98,12 +98,13 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `game-developer` | Unity, Godot, Phaser |
 | ...and 8 more | Full coverage |
 
-### Skills (58 knowledge modules)
+### Skills (67 knowledge modules)
 
 - **37 Kit Skills**: clean-code, api-patterns, frontend-design, database-design, vulnerability-scanner, testing-patterns, and more
 - **4 OpenSpec Skills**: propose, apply, explore, archive — spec-driven planning without CLI
 - **8 GSAP Skills**: core, scrolltrigger, timeline, react, frameworks, plugins, performance, utils
 - **9 Superpowers Skills**: TDD, systematic debugging, brainstorming, writing plans, subagent development, and more
+- **9 Brand Design Systems**: Linear, Vercel, Stripe, Notion, Spotify, Framer, Apple, ClickHouse, and more — exact design tokens from real websites
 
 ### Superpowers Skills (9 systematic development skills)
 
@@ -119,7 +120,34 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `sp-finish-branch` | ✅ Complete development with merge/PR/cleanup options |
 | `sp-code-review` | 👀 Request and conduct code reviews |
 
-### Workflows (16 slash commands)
+### Brand Design Systems (NEW — 25+ brand presets)
+
+Access exact design tokens from popular brands as reference for your designs:
+
+| Brand | Style | Primary Colors |
+|-------|-------|----------------|
+| **Linear** | Minimal precision purple dark | `#5E6AD2` / `#0F111A` |
+| **Vercel** | Monochrome geist precision | `#171717` / `#FFFFFF` |
+| **Stripe** | Elegant gradient purple | `#533AFD` / `#FFFFFF` |
+| **Notion** | Warm minimalism serif | `#0075DE` / `#F6F5F4` |
+| **Spotify** | Dark vibrant green | `#1ED760` / `#121212` |
+| **Framer** | Bold black blue motion-first | `#0099FF` / `#000000` |
+| **Apple** | Premium white-space sf-pro | `#0071E3` / `#F5F5F7` |
+| **ClickHouse** | Neon black speed acid-yellow | `#FAFF69` / `#000000` |
+| **+17 more** | Claude, Figma, Sentry, Supabase, Raycast... | See `/ui-ux-pro-max` |
+
+```bash
+# Get complete design system for a brand
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --brand linear
+
+# Search brands by style
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "dark minimal purple" --brand-search
+
+# Find similar brands
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to stripe
+```
+
+### Workflows (25 slash commands)
 
 | Command | What it does |
 |---------|-------------|
@@ -134,11 +162,21 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `/opsx-apply` | Implement from proposal |
 | `/opsx-explore` | Think/explore before building |
 | `/opsx-archive` | Archive completed change |
-| `/ui-ux-pro-max` | Premium UI design |
+| `/ui-ux-pro-max` | Premium UI design with 25+ brand systems |
 | `/preview` | Start, inspect, and manage local preview |
 | `/status` | Show current system and project status |
 | `/brainstorm` | Structured discovery and ideation |
 | `/enhance` | Improve existing codebases |
+| **Superpowers Workflows** ||
+| `/superpowers` | Complete Superpowers workflow (8 phases) |
+| `/sp-brainstorm` | Brainstorm design specs before coding |
+| `/sp-plan` | Create detailed implementation plans |
+| `/sp-tdd` | Enforce TDD on current task |
+| `/sp-debug` | 4-phase systematic debugging |
+| `/sp-subagent` | Execute with subagents + review |
+| `/sp-execute` | Execute plans inline |
+| `/sp-worktree` | Create isolated git workspace |
+| `/sp-finish` | Complete development with merge options |
 
 ---
 
@@ -149,10 +187,11 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 ├── ARCHITECTURE.md          # System map
 ├── agents/                  # 20 specialist agents
 │   └── orchestrator.md      # 🧠 Super Orchestrator
-├── skills/                  # 58 skills
+├── skills/                  # 67 skills
 │   ├── openspec-*/          # 4 planning skills
 │   ├── gsap-*/              # 8 animation skills
 │   ├── sp-*/                # 9 Superpowers skills
+│   ├── design-presets/      # 25+ brand design systems
 │   └── .../                 # 37 kit skills
 ├── project-skills/          # project-scoped learned skills from /learn
 ├── workflows/               # 16 slash commands
@@ -211,12 +250,13 @@ Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
 
 ## 🙏 Credits
 
-This toolkit unifies work from four open-source projects:
+This toolkit unifies work from five open-source projects:
 
 - **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** by @vudovn — The agent/skill/workflow foundation
 - **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** by @Fission-AI — Spec-driven planning framework
 - **[GSAP Skills](https://github.com/greensock/gsap-skills)** by @greensock — Animation domain expertise
 - **[Superpowers](https://github.com/obra/superpowers)** by @obra — Systematic development workflow skills
+- **[Awesome Design MD](https://github.com/VoltAgent/awesome-design-md)** by @VoltAgent — Brand design systems from real websites
 
 ---
 

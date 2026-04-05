@@ -1,14 +1,60 @@
 ---
-description: Plan and implement UI
----
-
----
-description: AI-powered design intelligence with 50+ styles, 95+ color palettes, and automated design system generation
+description: AI-powered design intelligence with 50+ styles, 95+ color palettes, 25+ brand presets, and automated design system generation
 ---
 
 # ui-ux-pro-max
 
-Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. Searchable database with priority-based recommendations.
+Comprehensive design guide for web and mobile applications. Contains 50+ styles, 97 color palettes, 25+ brand design systems (Linear, Vercel, Stripe, etc.), 57 font pairings, 99 UX guidelines, and 25 chart types across 9 technology stacks. Searchable database with priority-based recommendations.
+
+---
+
+## 🆕 Brand Design Systems (NEW)
+
+Access exact design tokens from popular brands and websites. Use these as reference or starting point for your designs.
+
+### Available Brands
+
+| Category | Brands |
+|----------|--------|
+| **Developer Tools** | Linear, Vercel, Supabase, Sentry, Expo, Resend |
+| **AI/ML** | Claude, Cohere, RunwayML, xAI |
+| **Fintech** | Stripe, Airbnb |
+| **Design Tools** | Figma, Framer, Notion, Miro |
+| **Productivity** | Raycast, Superhuman, Intercom |
+| **Infrastructure** | ClickHouse, HashiCorp, MongoDB, IBM |
+| **Entertainment** | Spotify, Pinterest |
+
+### Using Brand Systems
+
+**Get a brand's complete design system:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --brand linear
+```
+
+**Search for brands by style:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "dark minimal purple" --brand-search
+```
+
+**Find brands similar to one you like:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to linear
+```
+
+**List all available brands:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --list-brands
+```
+
+Each brand system includes:
+- Exact color palette (primary, background, text colors)
+- Typography (heading and body fonts)
+- Border radius patterns
+- Shadow styles
+- Spacing and layout rules
+- Component patterns (buttons, cards, inputs)
+
+---
 
 ## Prerequisites
 
@@ -41,6 +87,30 @@ winget install Python.Python.3.12
 
 When user requests UI/UX work (design, build, create, implement, review, fix, improve), follow this workflow:
 
+### Step 0: Check for Brand Reference (NEW)
+
+Ask the user if they have a specific brand or website in mind:
+
+> "Do you have a specific brand style in mind? For example:
+> - **Linear** — minimal precision purple dark
+> - **Vercel** — monochrome geist precision
+> - **Stripe** — elegant purple gradient
+> - **Notion** — warm minimalism serif
+> - **Spotify** — dark vibrant green
+> - Or describe what you're looking for"
+
+**If they mention a brand:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --brand <brand_name>
+```
+
+**If they describe a style:**
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<description>" --brand-search
+```
+
+Use the brand's exact values in the design system generation (Step 2).
+
 ### Step 1: Analyze User Requirements
 
 Extract key information from user request:
@@ -48,6 +118,7 @@ Extract key information from user request:
 - **Style keywords**: minimal, playful, professional, elegant, dark mode, etc.
 - **Industry**: healthcare, fintech, gaming, education, etc.
 - **Stack**: React, Vue, Next.js, or default to `html-tailwind`
+- **Brand reference**: Any specific brand they want to emulate (optional)
 
 ### Step 2: Generate Design System (REQUIRED)
 
@@ -62,6 +133,15 @@ This command:
 2. Applies reasoning rules from `ui-reasoning.csv` to select best matches
 3. Returns complete design system: pattern, style, colors, typography, effects
 4. Includes anti-patterns to avoid
+
+**If using a brand reference,** incorporate the brand's exact values:
+```bash
+# First get brand system
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --brand linear
+
+# Then generate design system with brand influence
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
+```
 
 **Example:**
 ```bash
@@ -110,6 +190,8 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<keyword>" --domain <dom
 | UX best practices | `ux` | `--domain ux "animation accessibility"` |
 | Alternative fonts | `typography` | `--domain typography "elegant luxury"` |
 | Landing structure | `landing` | `--domain landing "hero social-proof"` |
+| Brand reference | `brand` | `--brand linear` |
+| Similar brands | `brand` | `--similar-to stripe` |
 
 ### Step 4: Stack Guidelines (Default: html-tailwind)
 
@@ -120,7 +202,7 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "<keyword>" --stack html-
 ```
 
 Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`, `react-native`, `flutter`, `shadcn`, `jetpack-compose`
-, `jetpack-compose`
+
 ---
 
 ## Search Reference
@@ -155,28 +237,59 @@ Available stacks: `html-tailwind`, `react`, `nextjs`, `vue`, `svelte`, `swiftui`
 | `shadcn` | shadcn/ui components, theming, forms, patterns |
 | `jetpack-compose` | Composables, Modifiers, State Hoisting, Recomposition |
 
+### Available Brands
+
+Get exact design systems from real brands:
+
+| Brand | Style | Key Colors |
+|-------|-------|------------|
+| `linear` | Minimal precision purple | `#5E6AD2` on `#0F111A` |
+| `vercel` | Monochrome geist precision | `#171717` on `#FFFFFF` |
+| `stripe` | Elegant gradient purple | `#533AFD` on `#FFFFFF` |
+| `notion` | Warm minimalism serif | `#0075DE` on `#F6F5F4` |
+| `spotify` | Dark vibrant green | `#1ED760` on `#121212` |
+| `framer` | Bold black blue motion | `#0099FF` on `#000000` |
+| `apple` | Premium white-space sf-pro | `#0071E3` on `#F5F5F7` |
+| `clickhouse` | Neon black speed | `#FAFF69` on `#000000` |
+| `claude` | Warm terracotta editorial | `#D97757` on `#FFFFFF` |
+| `airbnb` | Warm coral friendly | `#FF5A5F` on `#FFFFFF` |
+
+See all: `python3 search.py --list-brands`
+
 ---
 
 ## Example Workflow
 
 **User request:** "Làm landing page cho dịch vụ chăm sóc da chuyên nghiệp"
 
+### Step 0: Check Brand Reference
+> "Do you have a specific brand style in mind? For a beauty spa, you might like:
+> - **Notion** — warm, soft, approachable
+> - **Claude** — warm terracotta, editorial
+> - Or describe your preferred style"
+
+User says: "Something like Notion but more elegant"
+
 ### Step 1: Analyze Requirements
 - Product type: Beauty/Spa service
-- Style keywords: elegant, professional, soft
+- Style keywords: elegant, professional, soft, warm (Notion-inspired)
 - Industry: Beauty/Wellness
 - Stack: html-tailwind (default)
+- Brand reference: Notion (warm minimalism)
 
-### Step 2: Generate Design System (REQUIRED)
-
+### Step 2: Get Brand Reference
 ```bash
-python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "beauty spa wellness service elegant" --design-system -p "Serenity Spa"
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --brand notion
 ```
 
-**Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns.
+### Step 3: Generate Design System
+```bash
+python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "beauty spa wellness service elegant warm" --design-system -p "Serenity Spa"
+```
 
-### Step 3: Supplement with Detailed Searches (as needed)
+**Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns — incorporating Notion's warm aesthetic but adapted for beauty/wellness.
 
+### Step 4: Supplement with Detailed Searches (as needed)
 ```bash
 # Get UX guidelines for animation and accessibility
 python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "animation accessibility" --domain ux
@@ -185,8 +298,7 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "animation accessibility"
 python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "elegant luxury serif" --domain typography
 ```
 
-### Step 4: Stack Guidelines
-
+### Step 5: Stack Guidelines
 ```bash
 python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "layout responsive form" --stack html-tailwind
 ```
@@ -212,11 +324,12 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "fintech crypto" --design
 ## Tips for Better Results
 
 1. **Be specific with keywords** - "healthcare SaaS dashboard" > "app"
-2. **Search multiple times** - Different keywords reveal different insights
-3. **Combine domains** - Style + Typography + Color = Complete design system
-4. **Always check UX** - Search "animation", "z-index", "accessibility" for common issues
-5. **Use stack flag** - Get implementation-specific best practices
-6. **Iterate** - If first search doesn't match, try different keywords
+2. **Reference brands when possible** - "like Linear but friendlier" gives concrete starting point
+3. **Search multiple times** - Different keywords reveal different insights
+4. **Combine domains** - Style + Typography + Color = Complete design system
+5. **Always check UX** - Search "animation", "z-index", "accessibility" for common issues
+6. **Use stack flag** - Get implementation-specific best practices
+7. **Iterate** - If first search doesn't match, try different keywords
 
 ---
 
