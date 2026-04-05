@@ -14,7 +14,7 @@ This workspace unifies **three** complementary systems into a single development
 | **OpenSpec** | Spec-driven formal planning | 4 skills, 4 workflows, `openspec/` data |
 | **GSAP Skills** | Animation domain expertise | 8 specialized animation skills |
 
-**Total**: 20 agents + 49 skills + 16 workflows + validation scripts
+**Total**: 20 agents + 58 skills + 25 workflows + validation scripts
 
 ---
 
@@ -119,7 +119,7 @@ USER REQUEST ──→ CLASSIFY
 
 ---
 
-## 🧩 Skills (49)
+## 🧩 Skills (58)
 
 ### Kit Skills (37)
 
@@ -156,6 +156,20 @@ USER REQUEST ──→ CLASSIFY
 | `openspec-explore` | Think/explore before building | `/opsx-explore` |
 | `openspec-archive-change` | Archive completed change | `/opsx-archive` |
 
+### Superpowers Skills (9)
+
+| Skill | Purpose | Workflow |
+|-------|---------|----------|
+| `sp-brainstorming` | Collaborative design before coding | `/sp-brainstorm` |
+| `sp-writing-plans` | Detailed implementation plans | `/sp-plan` |
+| `sp-tdd` | RED-GREEN-REFACTOR enforcement | `/sp-tdd` |
+| `sp-systematic-debugging` | 4-phase root cause analysis | `/sp-debug` |
+| `sp-subagent-dev` | Fresh subagent per task + review | `/sp-subagent` |
+| `sp-executing-plans` | Inline plan execution | `/sp-execute` |
+| `sp-git-worktrees` | Isolated git worktrees | `/sp-worktree` |
+| `sp-finish-branch` | Merge/PR/keep/discard | `/sp-finish` |
+| `sp-code-review` | Code review with quality gates | via `/sp-subagent` |
+
 ### GSAP Animation Skills (8)
 
 | Skill | Purpose | Keywords |
@@ -171,7 +185,7 @@ USER REQUEST ──→ CLASSIFY
 
 ---
 
-## 🔄 Workflows (16)
+## 🔄 Workflows (25)
 
 ### Kit Workflows (12)
 
@@ -198,6 +212,26 @@ USER REQUEST ──→ CLASSIFY
 | `/opsx-apply` | Implement from proposal |
 | `/opsx-explore` | Think before building |
 | `/opsx-archive` | Archive completed change |
+
+### Superpowers Workflows (9)
+
+| Command | Description |
+|---------|-------------|
+| `/superpowers` | Full end-to-end TDD workflow |
+| `/sp-brainstorm` | Collaborative design |
+| `/sp-plan` | Implementation planning |
+| `/sp-tdd` | TDD enforcement |
+| `/sp-debug` | Systematic debugging |
+| `/sp-worktree` | Isolated git worktree |
+| `/sp-subagent` | Subagent-driven execution |
+| `/sp-execute` | Inline plan execution |
+| `/sp-finish` | Complete development |
+
+### System Workflows
+
+| Command | Description |
+|---------|-------------|
+| `/init` | Initialize Blackbox — scan project, generate AGENTS.md |
 
 ---
 
@@ -238,8 +272,8 @@ USER REQUEST ──→ CLASSIFY
 | Metric | Value |
 |--------|-------|
 | **Total Agents** | 20 |
-| **Total Skills** | 49 (37 Kit + 4 OpenSpec + 8 GSAP) |
-| **Total Workflows** | 16 (12 Kit + 4 OpenSpec) |
+| **Total Skills** | 58 (37 Kit + 4 OpenSpec + 8 GSAP + 9 Superpowers) |
+| **Total Workflows** | 25 (12 Kit + 4 OpenSpec + 9 Superpowers) |
 | **Total Scripts** | 6 master + 12 skill-level |
 | **Coverage** | ~95% web/mobile/animation development |
 

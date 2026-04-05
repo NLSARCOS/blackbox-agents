@@ -1,6 +1,6 @@
 # ⬛ Blackbox Agents — AI Agent Toolkit
 
-> **20 Agents + 49 Skills + 16 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
+> **20 Agents + 58 Skills + 16 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
 
 A unified AI development environment that combines three powerful systems into a single, portable toolkit:
 
@@ -9,6 +9,7 @@ A unified AI development environment that combines three powerful systems into a
 | **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** | 20 specialist agents, 37 domain skills, validation scripts |
 | **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** | Spec-driven formal planning (proposal → design → specs → tasks) |
 | **[GSAP Skills](https://github.com/greensock/gsap-skills)** | 8 animation domain skills for production-grade motion design |
+| **[Superpowers](https://github.com/obra/superpowers)** | 9 workflow skills for TDD, debugging, and systematic development |
 
 ---
 
@@ -84,11 +85,26 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `game-developer` | Unity, Godot, Phaser |
 | ...and 8 more | Full coverage |
 
-### Skills (49 knowledge modules)
+### Skills (58 knowledge modules)
 
 - **37 Kit Skills**: clean-code, api-patterns, frontend-design, database-design, vulnerability-scanner, testing-patterns, and more
 - **4 OpenSpec Skills**: propose, apply, explore, archive — spec-driven planning without CLI
 - **8 GSAP Skills**: core, scrolltrigger, timeline, react, frameworks, plugins, performance, utils
+- **9 Superpowers Skills**: TDD, systematic debugging, brainstorming, writing plans, subagent development, and more
+
+### Superpowers Skills (9 systematic development skills)
+
+| Skill | Purpose |
+|-------|---------|
+| `sp-brainstorming` | 🧠 Explore requirements and create design specs before coding |
+| `sp-writing-plans` | 📝 Create detailed implementation plans with bite-sized tasks |
+| `sp-tdd` | 🔴🟢🔵 Test-Driven Development: RED-GREEN-REFACTOR cycle |
+| `sp-systematic-debugging` | 🐛 4-phase systematic debugging process |
+| `sp-subagent-dev` | 🤖 Execute plans with subagents + two-stage review |
+| `sp-executing-plans` | ▶️ Execute implementation plans with checkpoints |
+| `sp-git-worktrees` | 🌳 Create isolated git worktrees for feature development |
+| `sp-finish-branch` | ✅ Complete development with merge/PR/cleanup options |
+| `sp-code-review` | 👀 Request and conduct code reviews |
 
 ### Workflows (16 slash commands)
 
@@ -120,9 +136,10 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 ├── ARCHITECTURE.md          # System map
 ├── agents/                  # 20 specialist agents
 │   └── orchestrator.md      # 🧠 Super Orchestrator
-├── skills/                  # 49 skills
+├── skills/                  # 58 skills
 │   ├── openspec-*/          # 4 planning skills
 │   ├── gsap-*/              # 8 animation skills
+│   ├── sp-*/                # 9 Superpowers skills
 │   └── .../                 # 37 kit skills
 ├── project-skills/          # project-scoped learned skills from /learn
 ├── workflows/               # 16 slash commands
@@ -181,11 +198,12 @@ Checks: Security → Lint → Schema → Tests → UX → SEO → Performance
 
 ## 🙏 Credits
 
-This toolkit unifies work from three open-source projects:
+This toolkit unifies work from four open-source projects:
 
 - **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** by @vudovn — The agent/skill/workflow foundation
 - **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** by @Fission-AI — Spec-driven planning framework
 - **[GSAP Skills](https://github.com/greensock/gsap-skills)** by @greensock — Animation domain expertise
+- **[Superpowers](https://github.com/obra/superpowers)** by @obra — Systematic development workflow skills
 
 ---
 

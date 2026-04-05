@@ -175,7 +175,7 @@ When user's prompt is NOT in English:
 **Path Awareness:**
 
 - Agents: `.agent/agents/` (20 specialists)
-- Skills: `.agent/skills/` (49 skills — Kit + OpenSpec + GSAP)
+- Skills: `.agent/skills/` (59 skills — Kit + OpenSpec + GSAP + Superpowers)
 - Project skills: `.agent/project-skills/` (repo-scoped learned conventions from `/learn`)
 - Workflows: `.agent/workflows/` (16 workflows — Kit + OpenSpec)
 - Scripts: `.agent/scripts/` (validation & audit)
@@ -185,6 +185,7 @@ When user's prompt is NOT in English:
 ### ⚡ Fast Path (Token Saver)
 
 > **Default to the smallest useful context first. Escalate only when complexity justifies it.**
+> **Output must be short, direct, and free of narration.** See `.agent/rules/token-efficiency.md` for full token efficiency rules.
 
 **Fast path order:**
 1. Read `python3 .agent/scripts/context_pack.py` output first.
@@ -202,6 +203,13 @@ When user's prompt is NOT in English:
 - architecture changes
 - unclear requirements
 - security/auth/data/production risk
+
+**Output discipline (all tiers):**
+- No sycophantic preamble ("Great!", "Sure!", "Absolutely!")
+- No process narration ("Now I will...", "Let me...", "I have completed...")
+- No closing summaries after edits — user can read the diff
+- Code first. Explanation only when non-obvious
+- Lead with the action, not the reasoning
 
 ### 🧠 Read → Understand → Apply
 
@@ -365,6 +373,12 @@ Execution:
 | **Vague Request** | Clarification | Ask the minimum needed to avoid rework |
 | **High-Risk Change** | Risk Gate | Ask before architecture, auth, security, data, or production-impacting work |
 | **Clear / Routine Task** | Direct Execution | Do not block progress with mandatory questioning |
+
+**Output format for agent responses:**
+- Announce agent: `🤖 Applying knowledge of @[agent]...` (1 line, then action)
+- No multi-paragraph explanations before the actual work
+- Show the code/fix/answer. Explain after only if non-obvious.
+- Never add features, abstractions, or validation not explicitly requested
 
 **Rules:**
 - Do not ask questions when the task is clear, local, and low risk.
