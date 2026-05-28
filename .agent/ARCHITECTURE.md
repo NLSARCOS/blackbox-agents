@@ -10,11 +10,11 @@ This workspace unifies **three** complementary systems into a single development
 
 | System | Purpose | Components |
 |--------|---------|------------|
-| **Antigravity Kit** | Agent execution, validation, workflows | 20 agents, 37 skills, 11 workflows, scripts |
+| **Antigravity Kit** | Agent execution, validation, workflows | 20 agents, 45 skills, 14 workflows, scripts |
 | **OpenSpec** | Spec-driven formal planning | 4 skills, 4 workflows, `openspec/` data |
 | **GSAP Skills** | Animation domain expertise | 8 specialized animation skills |
 
-**Total**: 20 agents + 58 skills + 25 workflows + validation scripts
+**Total**: 20 agents + 66 skills + 29 workflows + validation scripts
 
 ---
 
@@ -32,17 +32,19 @@ This workspace unifies **three** complementary systems into a single development
 │   ├── database-architect.md
 │   ├── test-engineer.md
 │   └── ... (13 more)
-├── skills/                  # 49 Skills (Kit + OpenSpec + GSAP)
+├── skills/                  # 66 Skills (Kit + OpenSpec + GSAP + Superpowers)
 │   ├── intelligent-routing/ # Auto agent selection
 │   ├── openspec-*/          # 4 OpenSpec skills
 │   ├── gsap-*/              # 8 GSAP animation skills
-│   └── ... (37 Kit skills)
+│   ├── sp-*/                # 9 Superpowers skills
+│   └── ... (45 Kit skills)
 ├── project-skills/          # Project-scoped learned skills created by /learn
 │   ├── _registry.json       # Learning signals, thresholds, and materialization state
-├── workflows/               # 16 Slash Commands (Kit + OpenSpec)
+├── workflows/               # 29 Slash Commands (Kit + OpenSpec + Superpowers + System)
 │   ├── opsx-propose.md      # OpenSpec propose
 │   ├── opsx-apply.md        # OpenSpec execute
-│   └── ... (13 more)
+│   ├── sp-brainstorm.md     # Superpowers
+│   └── ... (24 more)
 ├── rules/                   # Global Rules
 │   └── GEMINI.md            # 🔴 Master ruleset
 ├── scripts/                 # Validation & Audit
@@ -119,13 +121,27 @@ USER REQUEST ──→ CLASSIFY
 
 ---
 
-## 🧩 Skills (58)
+## 🧩 Skills (66)
 
-### Kit Skills (37)
+### Kit Skills (45)
 
 **Frontend & UI**: `frontend-design`, `react-best-practices` (nextjs-react-expert), `web-design-guidelines`, `tailwind-patterns`
 
 **Backend & API**: `api-patterns`, `nodejs-best-practices`, `python-patterns`, `rust-pro`
+
+**Batch Operations**: `batch-operations`
+
+**Code Review**: `code-review-graph`, `code-review-checklist`
+
+**Context Management**: `context-compression`, `coordinator-mode`
+
+**Memory System**: `memory-system`
+
+**Code Simplification**: `simplify-code`
+
+**Skill Creation**: `skillify`
+
+**Change Verification**: `verify-changes`
 
 **Database**: `database-design`
 
@@ -185,13 +201,14 @@ USER REQUEST ──→ CLASSIFY
 
 ---
 
-## 🔄 Workflows (25)
+## 🔄 Workflows (29)
 
-### Kit Workflows (12)
+### Kit Workflows (15)
 
 | Command | Description |
 |---------|-------------|
 | `/brainstorm` | Socratic discovery |
+| `/coordinate` | Advanced multi-agent coordination |
 | `/create` | Create new app/feature |
 | `/debug` | Systematic debugging |
 | `/deploy` | Deploy to production |
@@ -200,9 +217,11 @@ USER REQUEST ──→ CLASSIFY
 | `/orchestrate` | Multi-agent coordination |
 | `/plan` | Task breakdown |
 | `/preview` | Preview changes |
+| `/remember` | Save info to persistent memory |
 | `/status` | Check project status |
 | `/test` | Run tests |
 | `/ui-ux-pro-max` | Premium UI design |
+| `/verify` | Verify changes via execution |
 
 ### OpenSpec Workflows (4)
 
@@ -272,8 +291,8 @@ USER REQUEST ──→ CLASSIFY
 | Metric | Value |
 |--------|-------|
 | **Total Agents** | 20 |
-| **Total Skills** | 58 (37 Kit + 4 OpenSpec + 8 GSAP + 9 Superpowers) |
-| **Total Workflows** | 25 (12 Kit + 4 OpenSpec + 9 Superpowers) |
+| **Total Skills** | 66 (45 Kit + 4 OpenSpec + 8 GSAP + 9 Superpowers) |
+| **Total Workflows** | 29 (15 Kit + 4 OpenSpec + 9 Superpowers + 1 System) |
 | **Total Scripts** | 6 master + 12 skill-level |
 | **Coverage** | ~95% web/mobile/animation development |
 

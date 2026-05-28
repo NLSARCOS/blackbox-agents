@@ -1,12 +1,12 @@
 # ⬛ Blackbox Agents — AI Agent Toolkit
 
-> **20 Agents + 67 Skills + 25 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
+> **20 Agents + 66 Skills + 29 Workflows** — Zero dependencies. Just copy `.agent/` to your project.
 
 A unified AI development environment that combines three powerful systems into a single, portable toolkit:
 
 | System | What it provides |
 |--------|-----------------|
-| **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** | 20 specialist agents, 37 domain skills, validation scripts |
+| **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)** | 20 specialist agents, 45 domain skills, validation scripts |
 | **[OpenSpec](https://github.com/Fission-AI/OpenSpec)** | Spec-driven formal planning (proposal → design → specs → tasks) |
 | **[GSAP Skills](https://github.com/greensock/gsap-skills)** | 8 animation domain skills for production-grade motion design |
 | **[Superpowers](https://github.com/obra/superpowers)** | 9 workflow skills for TDD, debugging, and systematic development |
@@ -98,9 +98,9 @@ AI: 💡 This affects 5+ files. Running /opsx-propose for formal planning...
 | `game-developer` | Unity, Godot, Phaser |
 | ...and 8 more | Full coverage |
 
-### Skills (67 knowledge modules)
+### Skills (75 knowledge modules)
 
-- **37 Kit Skills**: clean-code, api-patterns, frontend-design, database-design, vulnerability-scanner, testing-patterns, and more
+- **45 Kit Skills**: clean-code, api-patterns, frontend-design, database-design, batch-operations, code-review-graph, memory-system, and more
 - **4 OpenSpec Skills**: propose, apply, explore, archive — spec-driven planning without CLI
 - **8 GSAP Skills**: core, scrolltrigger, timeline, react, frameworks, plugins, performance, utils
 - **9 Superpowers Skills**: TDD, systematic debugging, brainstorming, writing plans, subagent development, and more
@@ -147,7 +147,7 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py "dark minimal purple" --b
 python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to stripe
 ```
 
-### Workflows (25 slash commands)
+### Workflows (29 slash commands)
 
 | Command | What it does |
 |---------|-------------|
@@ -158,6 +158,7 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to stripe
 | `/test` | Generate and run tests |
 | `/deploy` | Pre-flight checks + deploy |
 | `/orchestrate` | Multi-agent coordination |
+| `/coordinate` | Advanced multi-agent coordination with synthesis |
 | `/opsx-propose` | Create formal change proposal |
 | `/opsx-apply` | Implement from proposal |
 | `/opsx-explore` | Think/explore before building |
@@ -167,6 +168,8 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to stripe
 | `/status` | Show current system and project status |
 | `/brainstorm` | Structured discovery and ideation |
 | `/enhance` | Improve existing codebases |
+| `/remember` | Save info to cross-session persistent memory |
+| `/verify` | Verify code changes via execution |
 | **Superpowers Workflows** ||
 | `/superpowers` | Complete Superpowers workflow (8 phases) |
 | `/sp-brainstorm` | Brainstorm design specs before coding |
@@ -187,14 +190,14 @@ python3 .agent/.shared/ui-ux-pro-max/scripts/search.py --similar-to stripe
 ├── ARCHITECTURE.md          # System map
 ├── agents/                  # 20 specialist agents
 │   └── orchestrator.md      # 🧠 Super Orchestrator
-├── skills/                  # 67 skills
+├── skills/                  # 66 skills (Kit + OpenSpec + GSAP + Superpowers)
 │   ├── openspec-*/          # 4 planning skills
 │   ├── gsap-*/              # 8 animation skills
 │   ├── sp-*/                # 9 Superpowers skills
 │   ├── design-presets/      # 25+ brand design systems
-│   └── .../                 # 37 kit skills
+│   └── .../                 # 45 kit skills
 ├── project-skills/          # project-scoped learned skills from /learn
-├── workflows/               # 16 slash commands
+├── workflows/               # 29 slash commands
 ├── rules/
 │   └── GEMINI.md            # Master config (routing rules)
 ├── scripts/                 # Validation scripts

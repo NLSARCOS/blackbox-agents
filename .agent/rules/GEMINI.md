@@ -175,9 +175,9 @@ When user's prompt is NOT in English:
 **Path Awareness:**
 
 - Agents: `.agent/agents/` (20 specialists)
-- Skills: `.agent/skills/` (59 skills — Kit + OpenSpec + GSAP + Superpowers)
+- Skills: `.agent/skills/` (66 skills — Kit + OpenSpec + GSAP + Superpowers)
 - Project skills: `.agent/project-skills/` (repo-scoped learned conventions from `/learn`)
-- Workflows: `.agent/workflows/` (16 workflows — Kit + OpenSpec)
+- Workflows: `.agent/workflows/` (29 workflows — Kit + OpenSpec + Superpowers + System)
 - Scripts: `.agent/scripts/` (validation & audit)
 - Memory: `.agent/MEMORY.md` (project decisions & context)
 - OpenSpec data: `openspec/` (change artifacts)
@@ -442,14 +442,17 @@ Execution:
 ### Agents & Skills
 
 - **Masters**: `orchestrator`, `project-planner`, `security-auditor`, `backend-specialist`, `frontend-specialist`, `mobile-developer`, `debugger`, `game-developer`
-- **Kit Skills (37)**: clean-code, brainstorming, app-builder, frontend-design, mobile-design, plan-writing, behavioral-modes, api-patterns, architecture, database-design, and 27 more
+- **Kit Skills (45)**: clean-code, brainstorming, app-builder, frontend-design, mobile-design, plan-writing, behavioral-modes, api-patterns, architecture, database-design, batch-operations, code-review-graph, context-compression, coordinator-mode, memory-system, simplify-code, skillify, verify-changes, and 27 more
 - **OpenSpec Skills (4)**: openspec-propose, openspec-apply-change, openspec-explore, openspec-archive-change
 - **GSAP Skills (8)**: gsap-core, gsap-scrolltrigger, gsap-timeline, gsap-react, gsap-frameworks, gsap-plugins, gsap-performance, gsap-utils
+- **Superpowers Skills (9)**: sp-brainstorming, sp-writing-plans, sp-tdd, sp-systematic-debugging, sp-subagent-dev, sp-executing-plans, sp-git-worktrees, sp-finish-branch, sp-code-review
 
 ### Workflow Commands
 
-- **Kit**: `/plan`, `/create`, `/enhance`, `/debug`, `/test`, `/deploy`, `/orchestrate`, `/brainstorm`, `/preview`, `/status`, `/ui-ux-pro-max`
+- **Kit**: `/plan`, `/create`, `/enhance`, `/debug`, `/test`, `/deploy`, `/orchestrate`, `/brainstorm`, `/preview`, `/status`, `/ui-ux-pro-max`, `/coordinate`, `/remember`, `/verify`
 - **OpenSpec**: `/opsx-propose`, `/opsx-apply`, `/opsx-explore`, `/opsx-archive`
+- **Superpowers**: `/superpowers`, `/sp-brainstorm`, `/sp-plan`, `/sp-tdd`, `/sp-debug`, `/sp-worktree`, `/sp-subagent`, `/sp-execute`, `/sp-finish`
+- **System**: `/init`
 
 ### Key Scripts
 
